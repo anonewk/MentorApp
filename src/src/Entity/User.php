@@ -281,9 +281,9 @@ class User implements UserInterface
     }
 
     /**
-     * 
+     *
      * Initialisation de la date d'enregistrement
-     * 
+     *
      * @return void
      */
 
@@ -296,9 +296,9 @@ class User implements UserInterface
 
 
     /**
-     * 
+     *
      * Initialisation de la date de mise à jour
-     * 
+     *
      * @return void
      */
     public function initializeUpdateDate()
@@ -693,7 +693,7 @@ class User implements UserInterface
         return $this;
     }
 
-    
+
 
     /**
      * @return Collection|GroupAssignment[]
@@ -768,12 +768,12 @@ class User implements UserInterface
 
     public function displayPhoto()
     {
-        if ($this->getProfilePicture() != null) {
+        if ($this->getProfilePicture() !== null) {
             return "data:" . $this->getProfilePicture()->getContentType() . ";base64," . base64_encode(stream_get_contents($this->getProfilePicture()->getData()));
         }
+        return "data:" . 'image/png' . ";base64," . base64_encode(file_get_contents('../public/assets/profile/default_profile.png'));
 
-        $path = '../public/assets/profile/default_profile.png';
 
-        return "data:" . 'image/png' . ";base64," . base64_encode(file_get_contents($path));
+
     }
 }
