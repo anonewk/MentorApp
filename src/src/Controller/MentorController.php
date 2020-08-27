@@ -37,9 +37,17 @@ class MentorController extends AbstractController
      * Controller pour afficher le profil de mentor
      *
      * @Route("/mentor_mentore/profil/{id}", name="mentor_mentore_profil")
+     * @param $id
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
      */
     public function profilMentor($id, EntityManagerInterface $manager){
         $user=$manager->getRepository(User::class)->find($id);
+/*dd($user);*/
+        $datetime = new \DateTime();
+        $date = $datetime->format('Y-m-d');
+
         return $this->render('mentor/profil.html.twig',['User' => $user]);
     }
 }

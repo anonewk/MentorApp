@@ -3,12 +3,185 @@
 {% block title %}Profil de {{ User.firstName  }} {{ User.lastName }}{% endblock %}
 
 {% block body %}
-    
+        <div class="">
+                <div class="w-7/12 m-auto h-64 mt-20 rounded-btn bg-primary shadow-lg">
+                        <div class="pt-8 space-y-3">
+                                <div class="flex justify-center">
+                                        <div class="flex">
+                                                <img  id="mentor_pictures" class="" src="{{ User.displayPhoto() }}" alt="User">
+                                        </div>
 
-        {{ User.firstName }}<br>
-        {{ User.lastName }}<br>
-        {{ User.status }}<br>
-        {{ User.city }}<br>
-        {#{{ User.registrationDate }}#}<br>
+                                </div>
+                                <div class="flex  justify-center text-center">
+                                        <div class="flex flex-col">
+                                                <div>
+                                                        <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>
 
+                                                </div>
+                                                <div>
+                                                        <span class="font-thin text-sm">{{ User.status }}</span>
+
+                                                </div>
+                                                <div>
+                                                        <span class="font-thin text-sm">{{ User.city }}, {{ User.country}}</span>
+                                                        <span class=" ml-2 font-thin text-sm">{% set lang = app.User.spokenLanguages | join (', ') %}
+                                                                {{ lang }}</span>
+
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+
+                </div>
+                <div class="w-7/12 m-auto mt-10 mb-8 rounded-btn bg-primary  shadow-lg">
+                        <div class="flex  justify-center text-center">
+                                <div class="flex flex-col">
+                                        <div class="m-5">
+                                                {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ligula erat, sed tincidunt turpis commodo eget. Morbi odio
+                                                        magna, consectetur id massa id, imperdiet tincidunt elit. Vivamus dictum velit non sodales consectetur. Suspendisse eget consectetur
+                                                        odio. Aliquam ex augue, ornare placerat varius vitae, auctor ac purus. Integer efficitur neque nec ex pretium, at suscipit sapien
+                                                        condimentum. Suspendisse tellus lectus, scelerisque quis est ut, pretium aliquam justo. Sed sit amet nulla metus. Donec porttitor, odio et
+                                                        maximus eleifend, ipsum erat pellentesque mauris, eget pharetra dolor ipsum eget elit. Proin feugiat, ligula non elementum sollicitudin,
+                                                        mi nunc mattis sapien, eu feugiat ex enim vitae ex. Fusce turpis mauris, hendrerit nec pulvinar in, scelerisque at justo. Fusce sit amet nulla
+                                                        vel mi tempor dignissim quis in turpis. Proin dictum eu enim eu placerat.
+                                                        Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus neque. In id
+                                                        ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec massa nunc, commodo id
+                                                        ante vitae, facilisis gravida libero.
+                                                        Morbi enim lacus, vestibulum ut luctus et, placerat quis massa. Morbi venenatis ligula auctor dolor gravida, quis imperdiet tellus eleifend.
+                                                        Donec tristique auctor diam non consectetur. Vivamus imperdiet efficitur metus vitae molestie. Pellentesque tincidunt, sapien nec suscipit
+                                                        tempus, eros sapien varius ex, quis rhoncus lacus arcu id elit. Donec vel consectetur tellus. Morbi vel orci et felis aliquet finibus.
+                                                        Pellentesque imperdiet sapien eget ornare pharetra. Nulla lacinia pretium purus nec accumsan. Fusce vel ex a metus commodo euismod
+                                                        et vitae tellus. Donec sit amet hendrerit est. Phasellus tincidunt iaculis augue, at semper turpis pellentesque vitae. Aliquam id leo ex.</p>
+                                        </div>
+
+                                </div>
+
+                        </div>
+                </div>
+                <div class="w-7/12 m-auto">
+                        <div>
+                                <p class="text-lg  font-bold font-medium text-gray-900">
+                                        Expertises
+                                </p>
+                        </div>
+                </div>
+                <div class="w-7/12 m-auto mt-10 mb-8 rounded-btn bg-primary m-5  shadow-lg">
+                        <div class="flex  justify-center text-center">
+                                <div class="flex flex-col space-y-6 text-sm">
+                                        <div>
+                                                {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                                <i data-feather="zap" class=" edit-pg" style="color:#f2a365 "></i>
+
+                                                <p>Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus
+                                                        neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
+                                                        massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
+                                        </div>
+                                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                                        <div>
+                                                {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                                <i data-feather="zap" class=" edit-pg" style="color:#f2a365 "></i>
+
+
+                                                <p>Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus
+                                                        neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
+                                                        massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
+                                        </div>
+                                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+
+                                        <div>
+                                                {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                                <i data-feather="zap" class="edit-" style="color:#f2a365 "></i>
+
+                                                <p>Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus
+                                                        neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
+                                                        massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
+                                        </div>
+                                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+
+                                </div>
+
+                        </div>
+
+                </div>
+                <div class="w-7/12 m-auto">
+                        <div>
+                                <p class="text-lg  font-bold font-medium text-gray-900">
+                                        Avis
+                                </p>
+                        </div>
+                </div>
+                <div class="w-7/12 m-auto  rounded-btn bg-primary  shadow-lg ">
+                        <div class="flex text-xs m-10 pt-10">
+                                <div class="mr-10">
+                                        <img  id="mentor_comm_picture" class="" src="{{asset('assets/profile/default_profile.png') }}" alt="User">
+                                        <style>
+                                                #mentor_comm_picture{
+                                                        overflow:hidden;
+                                                        -webkit-border-radius:50px;
+                                                        -moz-border-radius:50px;
+                                                        border-radius:60px;
+                                                        width:120px;
+                                                        height:50px;
+                                                }
+                                        </style>
+                                        <div class="text-center">
+                                                <span>Robert Ray</span>
+                                                <p>12 sessions</p>
+                                        </div>
+
+
+                                </div>
+                                <div class="text-justify flex-initial">
+                                        {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                        <p>Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus
+                                                neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
+                                                massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
+                                </div>
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+                        <div class="flex text-xs m-10 pt-10">
+                                <div class="mr-10">
+                                        <img  id="mentor_comm_picture" class="" src="{{asset('assets/profile/default_profile.png') }}" alt="User">
+                                        <style>
+                                                #mentor_comm_picture{
+                                                        overflow:hidden;
+                                                        -webkit-border-radius:50px;
+                                                        -moz-border-radius:50px;
+                                                        border-radius:60px;
+                                                        width:120px;
+                                                        height:50px;
+                                                }
+                                        </style>
+                                        <div class="text-center">
+                                                <span>Robert Ray</span>
+                                                <p>12 sessions</p>
+                                        </div>
+
+
+                                </div>
+                                <div class="text-justify flex-initial">
+                                        {#  <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>#}
+                                        <p>Nulla facilisi. Nam elementum porttitor purus et vestibulum. Vivamus tempus ipsum at mattis viverra. Nullam in faucibus
+                                                neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
+                                                massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
+                                </div>
+
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                </div>
+
+        </div>
 {% endblock %}
+  {% block javascripts %}
+
+          <script>
+
+                  feather.replace()
+          </script>
+  {% endblock %}
