@@ -1,23 +1,117 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des utilisateurs{% endblock %}
+{% block title %}Parcourir les mentors{% endblock %}
 
 {% block body %}
-    {% for User in Users %}
-        {% set country = "" %} 
-        {% if (User.country is defined) and (User.country !="" ) %}
-            {% set country = ' , '~ User.country %}
-        {% endif %}
-        <div class="divBlocListMentor">
-            <div class="floatLeft">Photo</div>
-            <div class="floatRight">
-                <span class="spanFullName">{{ User.firstName }} {{ User.lastName }}</span>
-                <span class="spanStatus">{{ User.status }}</span>
-                <span class="spanCity">de {{ User.city }}{{ country  }}</span>
-                <a class="linkProfil" href="{{ path('mentor_mentore_profil', {'id' : User.id })}}">Voir profil</a>
+
+    <div class=" w-7/12 m-auto mt-20 mb-40 rounded-btn">
+        <div class=" m-auto rounded-btn">
+            <div>
+                <h3 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                    Parcourir les mentors
+                </h3>
+                <div class="max-w-2xl  text-gray-500 mb-4 float-right">
+                    <select class="form-select" name="" id="">
+                        <option value="">Classement</option>
+                    </select>
+                </div>
+                <p class="max-w-2xl text-sm leading-5 text-gray-500 mb-4">
+                    46 mentors trouvés
+                </p>
+
             </div>
-            
         </div>
 
-    {% endfor %}
+        <div class="rounded-btn ">
+            {% for User in Users %}
+                {% set country = "" %}
+                {% if (User.country is defined) and (User.country !="" ) %}
+                    {% set country = ' , '~ User.country %}
+                {% endif %}
+
+                <div class="bg-primary mb-2 h-40">
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ User.displayPhoto() }}" alt="User">
+                    </div>
+                    <style>
+                        #mentor_pictures{
+                            overflow:hidden;
+                            -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+                            border-radius:60px;
+                            width:120px;
+                            height:120px;
+                        }
+                    </style>
+                    <div class="pt-6">
+                        <div class="grid grid-flow-col grid-rows-4 pl-5 ">
+                            <span class="font-semibold">{{ User.firstName }} {{ User.lastName }}</span>
+                            <span class="font-thin text-sm">{{ User.status }}</span>
+                            <span class="font-thin text-sm">de {{ User.city }}{{ country  }}</span>
+
+
+
+                                <div>
+                                    <span class=" p* font-thin text-sm rounded-btn border w-4/5">Mettre les skills ici</span>
+
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <a class="linkProfil pl-5" href="{{ path('mentor_mentore_profil', {'id' : User.id })}}">Voir profil</a>
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+    <form action="">
+
+        <div>
+            <div class="w-7/12 m-auto mt-20 mb-40 rounded-btn bg-primary">
+                <div class=" m-auto rounded-btn">
+                    <div>
+                        <p class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                            Compétences
+                        </p>
+
+                    </div>
+                    <div>
+                        <input type="checkbox" name="vehicle1" value="Bike">
+                        <label for="vehicle1"> I have a bike</label><br>
+                        <input type="checkbox" name="vehicle2" value="Car">
+                        <label for="vehicle2"> I have a car</label><br>
+                        <input type="checkbox" name="vehicle3" value="Boat">
+                        <label for="vehicle3"> I have a boat</label><br><br>
+                        <input type="submit" value="Submit">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-7/12 m-auto mt-20 mb-40 rounded-btn bg-primary">
+                <div class=" m-auto rounded-btn">
+                    <div>
+                        <p class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                            Fréquence de session
+                        </p>
+
+                    </div>
+                    <div class="">
+                        <input type="checkbox" name="vehicle1" value="Bike">
+                        <label for="vehicle1"> I have a bike</label><br>
+                        <input type="checkbox" name="vehicle2" value="Car">
+                        <label for="vehicle2"> I have a car</label><br>
+                        <input type="checkbox" name="vehicle3" value="Boat">
+                        <label for="vehicle3"> I have a boat</label><br><br>
+                        <input type="submit" value="Submit">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
 {% endblock %}

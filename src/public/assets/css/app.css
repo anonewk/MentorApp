@@ -128,23 +128,16 @@ body {
 .input_add_contact{
     display: inline;
 }
-div.divBlocListMentor{
-    margin-top: 5px;
-    background-color: #ffffff;
+
+#mentor_pictures{
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:100px;
+    height:100px;
 }
 
-div.divBlocListMentor span{
-    display: block;
-}
-.divBlocListMentor .spanFullName{
-    font-weight: bold;
-}
-.divBlocListMentor .spanStatus{
-    font-size: 13px;
-}
-.divBlocListMentor .spanCity{
-    font-size: 10px;
-}
 .floatRight,.floatLeft{
     height:100%;
     display:inline-block;
