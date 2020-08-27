@@ -26,9 +26,9 @@ class MentorController extends AbstractController
         $usersSkills = $manager->getRepository(Skill::class)->findAll();
 
 
+
         return $this->render('mentor/list.html.twig', [
             'Users'=>$users,
-            'userSkills'=>$usersSkills,
 
         ]);
     }
