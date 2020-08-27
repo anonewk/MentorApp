@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/Logos/logo_transparent.png') }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="/assets/css/app.css" rel="stylesheet">
+    <!-- Pour Mobile - ResponsiveWeb -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    {%- block stylesheets -%}
+        {# could contain other stylesheet link tags relevant to your project #}
+        {{ encore_entry_link_tags('tailwind') }}
+    {%- endblock -%}
+</head>
+<body class="theme" >
+<header >
+    <div class="bg-secondary">
+        <nav class="flex flex-wrap items-center justify-between p-2" >
+
+
+            {% if is_granted('ROLE_USER')%}
+
+                <div class="navbar-menu hidden lg:block w-full lg:w-2/5 lg:text-left text-xs" >
+                    <a class="text-primary block lg:inline-block mt-4 lg:mt-0 ml-20 text-blue-900 hover:bg-primary weight-normal" href="{{ path('default')}}">MentorApp</a>
+                    <a class="text-primary block lg:inline-block mt-4 lg:mt-0 ml-12 text-blue-900 hover:text-blue-700" href="{{ path('user_profile',{id: app.user.id}) }}">Mon profil</a>
+                    <a class="text-primary block lg:inline-block mt-4 lg:mt-0 ml-2 text-blue-900 hover:text-blue-700" href="#">Demander de l'aide</a>
+                    <a class="text-primary block lg:inline-block mt-4 lg:mt-0  ml-2 text-blue-900 hover:text-blue-700" href="{{ path('mentor_mentore_list') }}">Parcourir les mentors</a>
+                    <a class="text-primary block lg:inline-block mt-4 lg:mt-0   text-blue-900 hover:text-blue-700" href="">Parcourir les groupes</a>
+                </div>
+
+
+                <div class="flex items-center justify-between px-4 py-3 sm:p-0">
+                </div>
+                <div id="dropdownAvatar" class="relative">
+                <button class="block h-8 w-8  overflow-hidden focus:outline-none focus:border-white">
+                    <img class="h-full w-full object-cover" src="{{ app.user.displayPhoto() }}" alt="Avatar">
+                </button>
+                <div id="dropdown" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl">
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">{{ app.user.firstName }} {{ app.user.lastname }}</a>
+                    <a href="{{ path('user_setting',{id: app.user.id}) }}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Paramètres</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Mes relations</a>
+                    <a href="{{path('app_logout')}}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Déconnexion</a>
+                </div>
+            </div>
+            {% elseif (is_granted('ROLE_USER') == false)%}
+                <div class="navbar-menu hidden  ml-32 lg:order-1 lg:block">
+                    <a class="text-primary block lg:inline-block text-blue-900 hover:text-inverse" href="{{ path('default')}}">MentorApp</a>
+                </div>
+                <div class="navbar-menu hidden mr-32 lg:order-3 lg:block w-full lg:w-2/5 lg:text-right" >
+                    <a class="ext-primary block lg:inline-block mt-4 lg:mt-0 mr-10 text-blue-900" href="{{ path('app_login')}}">Connexion</a>
+                    <button class="hover:bg-secondary  bg-default rounded-btn weight-btn p-2">
+                        <a class="text-inverse block lg:inline-block mt-4 lg:mt-0 text-blue-900 " href="{{ path('user_register')}}">Inscription</a>
+                    </button>
+                </div>
+            {% endif%}
+
+        </nav>
+    </div>
+
+    {% block body %}
+
+    {% endblock %}
+</header>
+
+
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+    {% block javascripts %}
+    <script>
+        var dropdown = document.getElementById('dropdown');
+        var dropdownAvatar = document.getElementById('dropdownAvatar');
+
+        dropdown.style.display = "none";
+        dropdownAvatar.addEventListener('click', function (e) {
+            if(dropdown.style.display !== "none"){
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+
+        })
+
+    </script>
+    <script>
+        import * as feather from "autoprefixer";
+
+        feather.replace()
+    </script>
+{% endblock %}
+                
+</body>
+
+</html>

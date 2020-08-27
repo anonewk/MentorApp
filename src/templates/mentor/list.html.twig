@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    {% for User in Users %}
+        {% set country = "" %} 
+        {% if (User.country is defined) and (User.country !="" ) %}
+            {% set country = ' , '~ User.country %}
+        {% endif %}
+        <div class="divBlocListMentor">
+            <div class="floatLeft">Photo</div>
+            <div class="floatRight">
+                <span class="spanFullName">{{ User.firstName }} {{ User.lastName }}</span>
+                <span class="spanStatus">{{ User.status }}</span>
+                <span class="spanCity">de {{ User.city }}{{ country  }}</span>
+                <a class="linkProfil" href="{{ path('mentor_mentore_profil', {'id' : User.id })}}">Voir profil</a>
+            </div>
+            
+        </div>
+
+    {% endfor %}
+{% endblock %}

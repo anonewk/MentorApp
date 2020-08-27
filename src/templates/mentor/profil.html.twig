@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ User.firstName  }} {{ User.lastName }}{% endblock %}
+
+{% block body %}
+    
+
+        {{ User.firstName }}<br>
+        {{ User.lastName }}<br>
+        {{ User.status }}<br>
+        {{ User.city }}<br>
+        {{ User.registrationDate }}<br>   
+
+{% endblock %}

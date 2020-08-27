@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block body %}
+    <div class="">
+        <div class="flex justify-center mt-8" >
+            <div class="pr-16 ">
+                <div>
+                    <h1  class="my-8 text-primary weight-display font-bold text-2xl" ><span>Obtenir de l'aide pour</span><br> <span>acquérir des compétences</span></h1>
+                </div>
+                <div>
+                    <p class="my-8"><span>Nous avons créé une plateforme qui vous fournira tous les</span><br>
+                        <span>outils nécessaires au succès de votre mentorat.</span></p>
+                </div>
+                <div>
+                    <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 "><a  class="text-inverse" href="">Trouver un mentor maintenant</a></button>
+                </div>
+            </div>
+            <div class="pr-32">
+                <img src="{{ asset('images/Logos/HomePage/undraw_shared_workspace_hwky@2x.png') }}" alt="Image body" class="" width="500">
+            </div>
+        </div>
+    </div>
+    <hr class="border-b-1 border-gray-400 my-8 mx-40">
+    <div class="my-16">
+        <div class="flex justify-center text-center" >
+            <h2 class="text-primary weight-display font-bold text-2xl">Commencez à échanger sur vos pratiques <br>
+                professionnelles avec d'autres <br>
+                passionnés</h2>
+        </div>
+
+        <div class="flex justify-end mt-12">
+            <div class="my-16 pr-20" >
+                <div class="my-8">
+                    <span class="font-bold">Définissez vos objectifs</span>
+                    <p>Une interface intuitive vous permet de définir vos <br>
+                        objectifs pour chaque nouveau contrat de mentorat.</p>
+                </div>
+                <div class="my-8 ">
+                    <span class="font-bold">Demander l'aide dont vous avez besoin</span>
+                    <p>Faites une demande afin de pouvoir trouver aisément le <br>
+                        mentor qui vous convient.</p>
+                </div>
+                <div class="my-8 ">
+                    <span class="font-bold">Organisez facilement vos sessions</span>
+                    <p>Choisissez le moment où la réunion doit avoir lieu et <br>
+                        c'est parti !</p>
+                </div>
+            </div>
+            <div class="pr-20">
+                <img src="{{ asset('images/Logos/HomePage/Image 12@2x.png') }}" alt="Parcourir les mentor" width="700">
+            </div>
+        </div>
+    </div>
+{% endblock %}

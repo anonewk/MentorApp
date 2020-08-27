@@ -1,0 +1,515 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Paramètres{% endblock %}
+
+{% block body %}
+    <input type="hidden" name="input-id" id="input-id" value="{{ app.user.id}}">
+    <div class=" w-8/12 m-auto mt-40 mb-40 rounded-btn">
+        <div class=" m-auto rounded-btn">
+            <div>
+                <h3 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                    Paramètres
+                </h3>
+                <p class="max-w-2xl text-sm leading-5 text-gray-500 mb-4">
+                    Paramètres généraux
+                </p>
+            </div>
+            <div class=" shadow-lg m-auto bg-primary rounded-btn ">
+                <div>
+                    <div>
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 mt-4 pt-8 ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Adresse email
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_emailAddress" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ app.user.emailAddress }}
+                                </span>
+                                <input type="text" id="field_emailAddress" class="field_hidden"value="">
+                                <span class="span_error span_error_emailAddress"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365;"></i>
+                            <input type="hidden" id="emailAddress" value="{{ app.user.emailAddress }}">
+
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Nom
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_lastName" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ app.user.lastName }}
+                                </span>
+                                <input type="text" id="field_lastName" class="field_hidden" value="">
+                                <span class="span_error span_error_lastName"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="lastName" value="{{ app.user.lastName }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Prénom
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_firstName" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ app.user.firstName }}
+                                </span>
+                                <input type="text" id="field_firstName" class="field_hidden" value="">
+                                <span class="span_error span_error_firstName"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="firstName" value="{{ app.user.firstName }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Statut
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_status" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ app.user.status }}
+                                </span>
+                                <input type="text" id="field_status" class="field_hidden" value="">
+                                <span class="span_error span_error_status"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="status" value="{{ app.user.status }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Localisation
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_city" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ app.user.city }}
+                                </span>
+                                <input type="text" id="field_city" class="field_hidden" value="">
+                                <span class="span_error span_error_city"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365;"></i>
+                            <input type="hidden" id="city" value="{{ app.user.city }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Langue
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_spokenLanguages" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {% set lang = app.user.spokenLanguages | join (', ') %}
+                                    {{ lang }}
+                                </span>
+                                <input type="text" id="field_spokenLanguages"  class="field_hidden" value="">
+                                <span class="span_error span_error_spokenLanguages"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="spokenLanguages" value="{{ lang }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Mot de passe
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_password" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2" type="password">
+                                    ***************
+                                </span>
+                                <span class="span_error span_error_password"></span><span class="span_success span_success_password"></span>
+                                <div class="div_hidden" id="div_passwords">
+                                    <label class="label_pw" for="old_pw"> Ancien mot de passe : </label><input id="old_pw" class="input_password" type="password"/><br>
+                                    <label class="label_pw"  for="new_pw">Nouveau mot de passe : </label><input id="new_pw" class="input_password" type="password"/><br>
+                                    <label class="label_pw"  for="new_pwc">Confirmer mot de passe : </label><input id="new_pwc" class="input_password" type="password"/><br>
+                                    <input id="Modifier_pw" type="submit" value="Modifier">
+                                </div>
+
+
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pgpw" id="edit-pgpw" style="color:#f2a365 "></i>
+                            <input type="hidden" id="password" value="pass">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Date de naissance
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_birthDate" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ app.user.birthDate|date("d-m-Y") }}
+                                </span>
+                                <input class="field_hidden" id="field_birthDate" type="date" max="{{ dateMax }}" min="{{ dateMin }}" value="{{ app.user.birthDate|date("Y-m-d") }}" name="the_date">
+                                <span class="span_error span_error_birthDate"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="birthDate" value="{{ app.user.birthDate|date("Y-m-d") }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Entreprise
+                                </label>
+                            </div>
+                            <div>
+                                <span id="span_company"  class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ app.user.company }}
+                                </span>
+                                <input type="text" id="field_company"  class="field_hidden" value="">
+                                <span class="span_error span_error_company"></span>
+                            </div>
+                            <i data-feather="edit-2" class="ml-56 edit-pg" style="color:#f2a365 "></i>
+                            <input type="hidden" id="company" value="{{ app.user.company }}">
+                        </div>
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                    Photo de profil
+                                </label>
+                            </div>
+                            <span>
+                               <img alt="{{ app.user.displayPhoto() }}" src="{{ app.user.firstName }}" />
+                                
+                            </span>
+                            <i data-feather="edit-2" class="ml-56 i-pen" style="color:#f2a365 "></i>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg   font-medium text-gray-900 mt-4">
+                    Préférences de mentoring
+                </h3>
+            </div>
+            <div class="bg-primary mt-2  pb-5">
+                <div class="flex flex-row  px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ">
+                    <div>
+                        <label class="text-sm leading-5 font-medium text-gray-500 ">
+                            Visibilité public
+                        </label>
+                    </div>
+                    <div>
+                                <span id="span_isPublicVisible" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {% if user.mentoringPreferences is not null %}
+                                        {{ app.user.mentoringPreferences.isPublicVisible ? 'Oui' : 'Non' }}
+                                    {% endif %}
+                                </span>
+                        {#<select id="field_isPublicVisible"  class="field_hidden" name="isPublicVisible">#}
+                        <select  class="w-full" name="isPublicVisible">
+                            <option value=""></option>
+                            <option value="Oui">Oui</option>
+                            <option value="Non">Non</option>
+                        </select>
+                        <span class="span_error span_error_isPublicVisible"></span>
+                    </div>
+                    <i data-feather="edit-2" class="ml-56 edit-pm" style="color:#f2a365 "></i>
+                    {% if user.mentoringPreferences is not null %}
+                        <input type="hidden" id="isPublicVisible" value="{{ app.user.mentoringPreferences.isPublicVisible }}">
+                    {% endif %}
+
+                </div>
+                <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ">
+                    <label class="text-sm leading-5 font-medium text-gray-500 ">
+                        Fréquence préférée des sessions
+                    </label>
+                </div>
+
+                <div>
+                                  <span id="span_Frequence" class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+
+                                        {% set ckecked_isOnceAWeek, ckecked_isTwiceAWeek, ckecked_isEveryDay, ckecked_isOnceAMonth , ckecked_isTwiceAMonth   ='', '','','','' %}
+                                      {% if user.mentoringPreferences is not null %}
+
+                                          {% set frequence = app.user.mentoringPreferences.frequencyPreferences %}
+
+                                          {% if frequence is not null %}
+
+                                              {% if frequence.isOnceAWeek is not null and frequence.isOnceAWeek == true %}
+
+                                                  {% set ckecked_isOnceAWeek ="checked" %}
+                                              {% endif %}
+                                              {% if frequence.isTwiceAWeek is not null and frequence.isTwiceAWeek  == true %}
+
+                                                  {% set ckecked_isTwiceAWeek  ='checked' %}
+                                              {% endif %}
+                                              {% if frequence.isEveryDay is not null and frequence.isEveryDay == true %}
+
+                                                  {% set ckecked_isEveryDay  ='checked' %}
+                                              {% endif %}
+                                              {% if frequence.isOnceAMonth is not null and frequence.isOnceAMonth == true %}
+
+                                                  {% set ckecked_isOnceAMonth  ='checked' %}
+                                              {% endif %}
+                                              {% if frequence.isTwiceAMonth is not null and frequence.isTwiceAMonth == true %}
+
+                                                  {% set ckecked_isTwiceAMonth  ='checked' %}
+                                              {% endif %}
+                                          {% endif %}
+                                      {% endif %}
+
+                                 </span>
+                    <span class="span_error span_error_Frequence"></span>
+                    <div class="ml-8" id="div_Frequence">
+
+                        <input class="checkbox_Frequence" type="checkbox" id="check_onceAweek" name="onceAweek" value="" {{ ckecked_isOnceAWeek }}>
+                        <label class="" for="">Une fois par semaine</label><br>
+                        <input class="checkbox_Frequence"  type="checkbox" id="check_twiceAweek" name="twiceAweek" value="" {{ ckecked_isTwiceAWeek  }}>
+                        <label for=""> Deux fois par </label><br>
+                        <input class="checkbox_Frequence"  type="checkbox" id="check_everyDay" name="everyDay" value="" {{ ckecked_isEveryDay }}>
+                        <label for="">Tous les jours</label><br>
+                        <input class="checkbox_Frequence"  type="checkbox" id="check_OnceAMonth" name="OnceAMonth" value="" {{ ckecked_isOnceAMonth}}>
+                        <label for="">Une fois par mois</label><br>
+                        <input class="checkbox_Frequence"  type="checkbox" id="check_twiceAmonth" name="twiceAmonth" value="" {{ ckecked_isTwiceAMonth }}>
+                        <label for="">Deux fois par mois</label><br>
+                    </div>
+                    {# <i data-feather="edit-2" class="ml-56 edit-pf" style="color:#f2a365 "></i>#}
+                    {% if user.mentoringPreferences is not null %}
+
+                        <input type="hidden" id="Frequence" value="{{ app.user.mentoringPreferences.isPublicVisible }}">
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3 class="text-lg   font-medium text-gray-900 mt-4">
+                Compétences
+            </h3>
+        </div>
+        <div class="bg-primary mt-4 pb-6">
+            <div class="ml-6 flex flex-row">
+
+                <span id="span_skills"></span>
+                <div id="div_skills" class="w-full">
+                    <span class="span_error span_error_skills"></span>
+                    <span class="span_success span_success_skills"></span>
+
+                        <input class="text-default bord"  placeholder="Compétence"  id="key_skill">
+                    <input type="hidden" value="" id="id_skill">
+
+                    <div id="div_result_skill" class="div_result_skill"></div>
+
+
+                    <select id="select_level_ad" class="w-40 mr-24 select_level" name="levelAdd">
+                        <option value="">Niveau</option>
+                        <option value="Novice">Novice</option>
+                        <option value="Intermédiaire">Intermédiaire</option>
+                        <option value="Compétent">Compétent</option>
+                        <option value="Avancé">Avancé</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                    <button>
+                        <input id="skill_ad" class="boutton_ajouter text-inverse hover:bg-secondary my-8 bg-default rounded-btn weight-btn p-2 "
+                               type="button" value="Ajouter">
+                    </button>
+
+                </div>
+            </div>
+            <table id="edit_skill">
+                {% if user.userSkills is not null %}
+
+                    {% for skill in user.userSkills %}
+                        <tr class="tr_skill_{{ skill.id }}">
+                            <td>
+                                <input id="inputTxt_skill_{{ skill.id }}" class="input_skill skill_up{{ skill.id }} w-full text-default hover:bg-white hover:border-gray-300 f focus:shadow-outline" type="text"  placeholder="Compétence" value="{{ skill.Skill.name }}">
+                            </td>
+                            <td>
+                                <select class="select_level" name="levelUp" id="level_{{ skill.id }}">
+                                    <option value="Novice" {% if (skill.level == 'Novice') %} selected="selected" {% endif %}>Novice</option>
+                                    <option value="Intermédiaire" {% if (skill.level == 'Intermédiaire') %} selected="selected" {% endif %}>Intermédiaire</option>
+                                    <option value="Compétent" {% if (skill.level == 'Compétent') %} selected="selected" {% endif %}>Compétent</option>
+                                    <option value="Avancé" {% if (skill.level == 'Avancé') %} selected="selected" {% endif %}>Avancé</option>
+                                    <option value="Expert" {% if (skill.level == 'Expert') %} selected="selected" {% endif %}>Expert</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="skill_up{{ skill.id }}" class="input_button_skill boutton_skill_update" type="Button" value="Modifier">
+                                <input id="update_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
+                                <input id="skill_upd{{ skill.id }}" class="input_button_skill boutton_skill_delete" type="Button" value="supprimer">
+                                <input id="delete_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+            <div id="div_list_skill">
+                <div class="flex flex-row bg-gray-50  py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                    {% if user.userSkills is not null %}
+                    {% for skill in user.userSkills %}
+                    <div>
+                        <label class="text-sm leading-5 font-bold text-gray-500 ">
+                            {{ skill.Skill.name }}
+                        </label>
+                    </div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        <td class="td-value">{{ skill.level }}</td>
+                        </p>
+                    </div>
+                    <i data-feather="edit-2" class="ml-56 i-pen" id="edit_skill_user" style="color:#f2a365;"></i>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex mt-4">
+            <h3 class="text-lg  font-medium ">Moyen de contact</h3>
+            <button id="new_contact" class="hover:bg-secondary text-white bg-inverse text-inverse rounded-b-btn ml-4 h-6 w-20 ">Nouveau</button>
+        </div>
+        <div class="bg-primary">
+            <div id="all_contact">
+                <span class="span_error span_error_contact"></span>
+                <span class="span_success span_success_contact"></span>
+                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div>
+                        <label class="text-sm leading-5 font-bold text-gray-500 ">
+                            Email
+                        </label>
+                    </div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            {{ app.user.emailAddress }}
+                        </p>
+                    </div>
+                    <i data-feather="edit-2" class="ml-56 " style="color:gray "></i>
+                </div>
+                {% for contactMethod in app.user.contactMethods %}
+                    <hr id="hr_contactM_{{ contactMethod.id }}" class="border-b-2 border-gray-900 mx-6" style="color:#ececec;">
+
+                    <div id="div_contactM_{{ contactMethod.id }}" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                        <div>
+                            <label class="text-sm leading-5 font-bold text-gray-500 labelContact data_contact label_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
+                                {{ contactMethod.Name }}
+                            </label>
+                            <input id="input_nameContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Name }}" class="input_contact input_contact_{{ contactMethod.id }}">
+                        </div>
+                        <div>
+                            <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 data_contact p_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
+                                {{ contactMethod.Value }}
+                            </p>
+                            <input id="input_valueContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Value }}" class="input_contact input_contact_{{ contactMethod.id }}">
+                            <input data-value="{{ contactMethod.Value }}" data-op="update" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="update_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Modifier">
+                            <input data-value="{{ contactMethod.Value }}" data-op="delete" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="delete_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Supprimer">
+                        </div>
+
+                        <div>
+                            <i data-feather="edit-2" data-value="{{ contactMethod.Value }}" data-name="{{ contactMethod.Name }}" data-id="{{ contactMethod.id }}" class="ml-56 i-pen editConactM" style="color:#f2a365"></i>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                <div id="div_add_contact" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div>
+                        <input id="input_nameContact_new" class="input_add_contact contactadd_name" type="text" placeholder="Moyen de contact">
+                    </div>
+                    <div>
+                        <input id="input_valueContact_new" class="input_add_contact contactadd_value" type="text" placeholder="Contact">
+                        <input data-op="create" data-name="" data-value="" data-idc="new" id="contactadd_submit" class="input_add_contact btn-submit-contact" type="submit" value="Ajouter">
+                    </div>
+                </div>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="flex mt-4">
+            <h3 class="text-lg  font-medium ">Premium</h3>
+        </div>
+        <div>
+            <div class="bg-primary">
+                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  border-b-2">
+                    <div>
+                        <label class="text-sm leading-5 font-bold text-gray-500 ">
+                            90 jours
+                        </label>
+                    </div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            37 jours restants
+                        </p>
+                    </div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            inactif
+                        </p>
+                    </div>
+                    <div>
+                        <a class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            Activer
+                        </a>
+                    </div>
+                    <i data-feather="edit-2" class="ml-56 i-pen" style="color:#f2a365 "></i>
+                </div>
+                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  border-b-2">
+                    <div>
+                        <label class="text-sm leading-5 font-bold text-gray-500 ">
+                            Premium
+                        </label>
+                    </div>
+                    <div>
+                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            Accordé par votre abonnement au groupe Les Docteurs
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <button class="hover:bg-inverse text-white bg-secondary px-3 py-3 text-inverse rounded-b-btn float-right mt-10 w-3/12">Supprimer mon compte</button>
+    </div>
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    <script>
+        var iduser = 'mon id';
+        var  url1 = '{{ (path('update_pg' ,{id: app.user.id})) }}';
+        var url2 = '{{ (path('search_skill')) }}';
+    </script>
+    <!-- <script type="text/javascript" src="./index.js"></script> -->
+    <script src="/assets/js/user_setting.js"></script>
+    <script>
+
+        feather.replace()
+    </script>
+
+
+{% endblock %}

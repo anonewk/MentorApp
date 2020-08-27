@@ -1,0 +1,162 @@
+body {
+    background-color: lightgray;
+}
+
+.edit-pg, .edit-pgpw, .edit-pm, .edit-pf, .edit-sk{
+    cursor: pointer;
+}
+.field_hidden{
+    display: none;
+    background-color:#F4F4F4;
+}
+.div_hidden{
+    display: none;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;;
+    background-color: wheat;
+}
+.span_error{
+    display: none;
+    color: darkred;
+}
+.span_success{
+    display: none;
+    color: green;
+}
+#Modifier_pw{
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+    align-items: center;
+}
+.span_error_password{
+    display: block;
+    margin-bottom: 12px;
+}
+#div_Frequence{
+    width: 40%;
+    left: auto;
+    right: auto;
+}
+
+.input_button_skill{
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
+}
+
+#div_skills{
+    position: relative;
+}
+
+#div_result_skill{
+    position:absolute;
+    display: inline;
+    left: 200px;
+    top: 0px;
+    background-color: saddlebrown;
+    color: seashell;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.ul_resul_skill li{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    list-style: none;
+}
+.ul_resul_skill li:hover{
+    cursor: pointer;
+    background-color: seashell;
+    color: saddlebrown;
+}
+.icon1{
+    color:red;
+}
+
+.editConactM, .deleteConactM{
+    cursor: pointer;
+}
+.input_contact{
+    background-color:#f2a365; 
+    color:#ffffff; 
+    padding-left:5px; 
+    display: none;
+    width: 125px;
+}
+#input_nameContact_new, #input_valueContact_new{
+    background-color:#f2a365; 
+    color:#ffffff; 
+    padding-left:5px;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+}
+#input_nameContact_new::placeholder, #input_valueContact_new::placeholder{
+  color:#ffffff;
+}
+#contactadd_submit{
+    padding-left: 4px; 
+    padding-right: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+#div_add_contact{
+    display: none;
+}
+
+.btn-submit-contact, .btn-submit-contact2{
+    cursor: pointer; 
+    padding-left:1px; 
+    padding-right:1px; 
+    background-color:gray; 
+    text-align:center; 
+    width:80px; 
+    display: none;
+}
+.span_error_contact{
+    margin-left: 20px;
+    color: red;
+}
+.span_success_contact{
+    margin-left: 20px;
+}
+.input_add_contact{
+    display: inline;
+}
+div.divBlocListMentor{
+    margin-top: 5px;
+    background-color: #ffffff;
+}
+
+div.divBlocListMentor span{
+    display: block;
+}
+.divBlocListMentor .spanFullName{
+    font-weight: bold;
+}
+.divBlocListMentor .spanStatus{
+    font-size: 13px;
+}
+.divBlocListMentor .spanCity{
+    font-size: 10px;
+}
+.floatRight,.floatLeft{
+    height:100%;
+    display:inline-block;
+}
+.floatRight{
+    margin-left: 5px;
+}
+.floatLeft{
+    vertical-align: bottom;
+}
+.linkProfil{
+    color: blue;
+    text-decoration: underline;
+    font-size: 11px;
+}
