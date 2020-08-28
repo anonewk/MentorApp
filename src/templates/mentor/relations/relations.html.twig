@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes relations{% endblock %}
+    {% block body %}
+
+        <div class=" w-7/12 m-auto mt-20 mb-40 rounded-btn">
+            <div class="bg-primary mb-20 h-56">
+                <div class="flex justify-center">
+                    {# Afficher les Images des utilisateurs mentor & mentoré#}
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ asset('/images/Logos/HomePage/Image -44@2x.png') }}" alt="User">
+                    </div>
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ asset('/images/Logos/HomePage/Image -43@2x.png') }}" alt="User">
+                    </div>
+
+
+                    <style>
+                        #mentor_pictures{
+                            overflow:hidden;
+                            -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+                            border-radius:60px;
+                            width:120px;
+                            height:120px;
+                        }
+                    </style>
+                </div>
+
+                <div class="float-right">
+                    <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 ">
+                        <a class="text-inverse" href="{{ path('mentor_mentore_relations_contrat') }}">Voir le contrat de mentorat</a>
+                    </button>
+                </div>
+
+                <div class="text-center pt-6">
+
+                    <div class="grid grid-flow-col grid-rows-4 pl-56">
+                        {# Afficher les contrats du l'utilisateur#}
+                        <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #57</span>
+                        {#Si c'est un mentor on affiche En tant que mentor sinon  En tant que mentoré#}
+                        <span class="text-sm">en tant que mentor</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="bg-primary mb-2 h-56">
+                <div class="flex justify-center">
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ asset('/images/Logos/HomePage/Image -44@2x.png') }}" alt="User">
+                    </div>
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ asset('/images/Logos/HomePage/Image -43@2x.png') }}" alt="User">
+                    </div>
+
+
+                    <style>
+                        #mentor_pictures{
+                            overflow:hidden;
+                            -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+                            border-radius:60px;
+                            width:120px;
+                            height:120px;
+                        }
+                    </style>
+                </div>
+
+                <div class="float-right">
+                    <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 ">
+                        <a class="text-inverse" href="">Voir le contrat de mentorat</a>
+                    </button>
+                </div>
+
+                <div class="text-center pt-6">
+
+                    <div class="grid grid-flow-col grid-rows-4 pl-56">
+                        {# Afficher les contrats du l'utilisateur#}
+
+                        <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #56</span>
+                        {#Si c'est un mentor on affiche En tant que mentor sinon  En tant que mentoré#}
+
+                        <span class="text-sm">en tant que mentor</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    {% endblock %}
+  {% block javascripts %}
+      <script>
+          var dropdown = document.getElementById('dropdown');
+          var dropdownAvatar = document.getElementById('dropdownAvatar');
+
+          dropdown.style.display = "none";
+          dropdownAvatar.addEventListener('click', function (e) {
+              if(dropdown.style.display !== "none"){
+                  dropdown.style.display = "none";
+              } else {
+                  dropdown.style.display = "block";
+              }
+
+          })
+
+      </script>
+      <script>
+
+          feather.replace()
+      </script>
+  {% endblock %}
