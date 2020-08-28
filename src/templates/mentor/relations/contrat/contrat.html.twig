@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes relations{% endblock %}
+    {% block body %}
+        <div class="flex">
+            <div class=" w-7/12 ml-64 mt-20 mb-40 rounded-btn">
+                <div class="bg-primary mb-20 h-56">
+                    <div class="flex justify-center">
+                        <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                            <img  src="{{ asset('/images/Logos/HomePage/Image -44@2x.png') }}" alt="User">
+                        </div>
+                        <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                            <img  src="{{ asset('/images/Logos/HomePage/Image -43@2x.png') }}" alt="User">
+                        </div>
+
+
+                        <style>
+                            #mentor_pictures{
+                                overflow:hidden;
+                                -webkit-border-radius:50px;
+                                -moz-border-radius:50px;
+                                border-radius:60px;
+                                width:120px;
+                                height:120px;
+                            }
+                        </style>
+                    </div>
+
+
+                    <div class="text-center pt-6">
+                        {#A remplacer par les données stocké en bdd#}
+
+                        <div class="grid grid-flow-col grid-rows-4">
+                            <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #57</span>
+                            <span class="text-sm">en tant que mentor</span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class=" m-auto rounded-btn">
+                    <div class="flex">
+                        <h1 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                            Sessions
+                        </h1>
+                        {#Si c'est un mentor on affiche le bouton sinon non#}
+                        <button id="new_contact" class="hover:bg-secondary text-white bg-inverse text-inverse rounded-b-btn ml-4 h-6 w-20 ">Plannifier</button>
+
+                    </div>
+                </div>
+
+                <div class="bg-primary mb-2 h-40">
+                    <div class="pt-6">
+                        <div class="grid   pl-5  ">
+                            {#A remplacer par les sessions stocké en bdd#}
+                            <div class="space-x-20">
+                                <span>Session n°9</span>
+                                <span>Dans 5 min</span>
+                                <span>Duis a urna risus. Cras sodales tellus urna, vel imper...</span>
+                                <span>
+                                <button class="hover:bg-default  bg-secondary rounded-btn weight-btn ">
+                                    <a class="text-inverse" href="">Rejoindre</a>
+                                </button>
+                            </span>
+
+
+                            </div>
+                            <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+                            <div class="space-x-20">
+                                <span>Session n°9</span>
+                                <span>Dans 5 min</span>
+                                <span>Duis a urna risus. Cras sodales tellus urna, vel imper...</span>
+                                <span> Terminé</span>
+
+                            </div>
+                            <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="mt-12 ml-16">
+                <div class="mt-10 space-y-5">
+                    <div>
+                        <button class="hover:bg-default  bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Objectif du contrat</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="hover:bg-default  bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Contacter Janoce</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="hover:bg-default bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Donner son avis</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="hover:bg-default  bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Rompre le contrat</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endblock %}
+  {% block javascripts %}
+      <script>
+          var dropdown = document.getElementById('dropdown');
+          var dropdownAvatar = document.getElementById('dropdownAvatar');
+
+          dropdown.style.display = "none";
+          dropdownAvatar.addEventListener('click', function (e) {
+              if(dropdown.style.display !== "none"){
+                  dropdown.style.display = "none";
+              } else {
+                  dropdown.style.display = "block";
+              }
+
+          })
+
+      </script>
+      <script>
+
+          feather.replace()
+      </script>
+  {% endblock %}

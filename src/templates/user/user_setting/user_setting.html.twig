@@ -5,7 +5,7 @@
 
 {% block body %}
     <input type="hidden" name="input-id" id="input-id" value="{{ app.user.id}}">
-    <div class=" w-8/12 m-auto mt-40 mb-40 rounded-btn">
+    <div class=" w-8/12 m-auto mt-24 mb-40 rounded-btn">
         <div class=" m-auto rounded-btn">
             <div>
                 <h3 class="text-lg  font-bold font-medium text-gray-900 mb-4">
@@ -307,7 +307,7 @@
                 Compétences
             </h3>
         </div>
-        <div class="bg-primary mt-4 pb-6">
+        <div class="bg-primary mt-4 pb-6 mb-4">
             <div class="ml-6 flex flex-row">
 
                 <span id="span_skills"></span>
@@ -321,7 +321,7 @@
                     <div id="div_result_skill" class="div_result_skill"></div>
 
 
-                    <select id="select_level_ad" class="w-40 mr-24 select_level" name="levelAdd">
+                    <label for="select_level_ad"></label><select id="select_level_ad" class="w-40 mr-24 select_level" name="levelAdd">
                         <option value="">Niveau</option>
                         <option value="Novice">Novice</option>
                         <option value="Intermédiaire">Intermédiaire</option>
@@ -500,6 +500,23 @@
 
 {% block javascripts %}
     <script>
+        var dropdown = document.getElementById('dropdown');
+        var dropdownAvatar = document.getElementById('dropdownAvatar');
+
+        dropdown.style.display = "none";
+        dropdownAvatar.addEventListener('click', function (e) {
+            if(dropdown.style.display !== "none"){
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+
+        })
+
+    </script>
+
+
+    <script>
         var iduser = 'mon id';
         var  url1 = '{{ (path('update_pg' ,{id: app.user.id})) }}';
         var url2 = '{{ (path('search_skill')) }}';
@@ -513,3 +530,4 @@
 
 
 {% endblock %}
+
