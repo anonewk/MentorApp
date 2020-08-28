@@ -3,7 +3,13 @@
 {% block title %}Profil de {{ User.firstName  }} {{ User.lastName }}{% endblock %}
 
 {% block body %}
+
         <div class="">
+                <div class="float-right">
+                        <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 mr-5">
+                                <a class="text-inverse" href="">Envoyer une demande de mentorat</a>
+                        </button>
+                </div>
                 <div class="w-7/12 m-auto h-64 mt-20 rounded-btn bg-primary shadow-lg">
                         <div class="pt-8 space-y-3">
                                 <div class="flex justify-center">
@@ -142,6 +148,9 @@
                                                 neque. In id ultricies odio. Nunc a eleifend orci, vitae tincidunt risus. Praesent tincidunt et tortor vitae pellentesque. Donec
                                                 massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
                                 </div>
+                                <div class="mt-20">
+                                        <p>27 juin 2020</p>
+                                </div>
                         </div>
                         <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
                         <div class="flex text-xs m-10 pt-10">
@@ -171,15 +180,38 @@
                                                 massa nunc, commodo id ante vitae, facilisis gravida libero.</p>
                                 </div>
 
+                                <div class="mt-20">
+                                        <p>27 juin 2020</p>
+                                </div>
                         </div>
-                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
 
+
+                        <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
+                        <div class="float-right">
+                                <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 ">
+                                        <a class="text-inverse" href="">Envoyer une demande de mentorat</a>
+                                </button>
+                        </div>
                 </div>
 
         </div>
 {% endblock %}
   {% block javascripts %}
+          <script>
+                  var dropdown = document.getElementById('dropdown');
+                  var dropdownAvatar = document.getElementById('dropdownAvatar');
 
+                  dropdown.style.display = "none";
+                  dropdownAvatar.addEventListener('click', function (e) {
+                          if(dropdown.style.display !== "none"){
+                                  dropdown.style.display = "none";
+                          } else {
+                                  dropdown.style.display = "block";
+                          }
+
+                  })
+
+          </script>
           <script>
 
                   feather.replace()
