@@ -117,4 +117,5 @@ class UserSkill
 
         return $this;
     }
+
 }

@@ -40,6 +40,12 @@ class MentoringContractRequest
      */
     private $UserRecipient;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=UserSkill::class, inversedBy="mentoringContractRequests")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $skillId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +98,18 @@ class MentoringContractRequest
     public function setUserRecipient(?User $UserRecipient): self
     {
         $this->UserRecipient = $UserRecipient;
+
+        return $this;
+    }
+
+    public function getSkillId(): ?UserSkill
+    {
+        return $this->skillId;
+    }
+
+    public function setSkillId(?UserSkill $skillId): self
+    {
+        $this->skillId = $skillId;
 
         return $this;
     }
