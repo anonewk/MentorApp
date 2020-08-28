@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes relations{% endblock %}
+    {% block body %}
+        <div class="flex " style="z-index: 3;">
+            <div class=" w-7/12 ml-64 mt-20 mb-40 rounded-btn">
+                <div class="bg-primary mb-20 h-56">
+                    <div class="flex justify-center">
+                        <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                            <img  src="{{ asset('/images/Logos/HomePage/Image -44@2x.png') }}" alt="User">
+                        </div>
+                        <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                            <img  src="{{ asset('/images/Logos/HomePage/Image -43@2x.png') }}" alt="User">
+                        </div>
+
+
+                        <style>
+                            #mentor_pictures{
+                                overflow:hidden;
+                                -webkit-border-radius:50px;
+                                -moz-border-radius:50px;
+                                border-radius:60px;
+                                width:120px;
+                                height:120px;
+                            }
+                        </style>
+                    </div>
+
+
+                    <div class="text-center pt-6">
+                        {#A remplacer par les données stocké en bdd#}
+
+                        <div class="grid grid-flow-col grid-rows-4">
+                            <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #57</span>
+                            <span class="text-sm">en tant que mentor</span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="">
+                    <div class="flex">
+                        <div class="mr-6">
+                            <div class=" m-auto rounded-btn">
+                                <div class="flex">
+                                    <h1 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                                        Fait
+                                    </h1>
+                                    {#Si c'est un mentor on affiche le bouton sinon non#}
+
+                                </div>
+                            </div>
+                            <div class="w-auto inline-block bg-primary mb-2 h-40" style="width: 430px">
+                                <div class="pt-6">
+                                    <div class="grid pl-5 ">
+                                        {#A remplacer par les objectifs à faire stocké en bdd#}
+                                        <div class="border rounded w-full py-2 px-3 text-default background-color">
+                                            <span >Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <div class=" m-auto rounded-btn">
+                                <div class="flex">
+                                    <h1 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                                        A faire
+                                    </h1>
+                                    {#Si c'est un mentor on affiche le bouton sinon non#}
+
+                                </div>
+                            </div>
+                            <div class="w-auto inline-block bg-primary mb-2 h-40" style="width: 430px">
+                                <div class="pt-6">
+                                    <div class="grid   pl-5  ">
+                                        {#A remplacer par les objectifs à faire stocké en bdd#}
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                        <div>
+                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="mt-12 ml-16">
+                <div class="mt-10 space-y-5">
+                    <div>
+                        <button id="ajouter_objectif" class="hover:bg-default  bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Ajouter</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button id="modifier_objectif" class="hover:bg-default bg-secondary rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Modifier</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button id="supprimer_objectif" class="hover:bg-default  bg-inverse rounded-btn weight-btn p-2 ">
+                            <a class="text-inverse" href="">Supprimer</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {# Pop up modifier#}
+        <div id="pop_up_ajouter" class="bg-primary rounded md:w-1/3 w-1/2 border shadow-lg  m-auto" style="z-index: 1;">
+            <div class="rounded-t bg-teal-500">
+                <div class="relative py-3 px-2 flex">
+                    <span class="font-semibold text-white md:text-base text-sm">Popup Title</span>
+                    <div class="absolute right-0 top-0 -mr-2 -mt-2 border cursor-pointer shadow-lg bg-white z-10 p-1 rounded-full p-2">
+                        <img src="https://image.flaticon.com/icons/svg/151/151882.svg"/ class="w-2 h-2">
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-200 md:text-base text-sm border-b p-2 h-24">
+                <p>Popup Messages</p>
+            </div>
+            <div class="p-2 flex justify-end rounded-b">
+                <button class="focus:outline-none py-1 px-2 md:py-2 md:px-3 w-24 mr-2 bg-blue-700 hover:bg-blue-600 text-white rounded">OK</button>
+                <button class="focus:outline-none py-1 px-2 md:py-2 md:px-3 w-24 bg-red-700 hover:bg-red-600 text-white rounded">Cancel</button>
+            </div>
+        </div>
+
+
+
+    {% endblock %}
+  {% block javascripts %}
+      <script>
+          var dropdown = document.getElementById('dropdown');
+          var dropdownAvatar = document.getElementById('dropdownAvatar');
+          var ajouterBtn = document.getElementById('ajouter_objectif');
+          var popUpAjouter = document.getElementById('pop_up_ajouter');
+
+          /*popUpAjouter.style.display = "none";*/
+          ajouterBtn.addEventListener('click', function (e) {
+              if(popUpAjouter.style.display !== "none"){
+                  popUpAjouter.style.display = "none";
+              } else {
+                  popUpAjouter.style.display = "block";
+              }
+
+          });
+          dropdown.style.display = "none";
+          dropdownAvatar.addEventListener('click', function (e) {
+              if(dropdown.style.display !== "none"){
+                  dropdown.style.display = "none";
+              } else {
+                  dropdown.style.display = "block";
+              }
+
+          })
+
+      </script>
+      <script>
+
+          feather.replace()
+      </script>
+  {% endblock %}

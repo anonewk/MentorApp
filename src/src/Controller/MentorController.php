@@ -58,7 +58,7 @@ class MentorController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    // TODO Changer la route, remplir la fonction, remplir le back sur la page twig
+    // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function relation(EntityManagerInterface $manager)
     {
 
@@ -78,7 +78,7 @@ class MentorController extends AbstractController
      * @throws \Exception
      */
 
-    // TODO Changer la route, remplir la fonction, remplir le back sur la page twig
+    // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function contrat(EntityManagerInterface $manager){
 
         /*dd($user);*/
@@ -87,9 +87,23 @@ class MentorController extends AbstractController
 
         return $this->render('mentor/relations/contrat/contrat.html.twig');
     }
+    /**
+     * Controller pour afficher le profil de mentor
+     *
+     * @Route("/mentor_mentore/relations/contrat/objectifs.html.twig", name="mentor_mentore_relations_contrat_objectif")
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
 
+    // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function contratObjectifs(EntityManagerInterface $manager)
     {
+        /*dd($user);*/
+        $datetime = new \DateTime();
+        $date = $datetime->format('Y-m-d');
 
+        return $this->render('mentor/relations/contrat//objectifs/objectifs.html.twig');
     }
+
 }
