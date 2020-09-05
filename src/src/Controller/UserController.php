@@ -71,7 +71,6 @@ class UserController extends ApplicationUser
         $repository = $this->getDoctrine()->getRepository(User::class);
         $product = $repository->find($user->getEmailAddress());
 
-
         $mentoringPreferences = new MentoringPreferences();
         $this->getDoctrine()->getManager()->flush();
 

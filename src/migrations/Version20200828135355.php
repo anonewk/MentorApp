@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200621171439 extends AbstractMigration
+final class Version20200828135355 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,22 +20,20 @@ final class Version20200621171439 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE `group` ADD package_subscription_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE `group` ADD CONSTRAINT FK_6DC044C512FDAB7C FOREIGN KEY (package_subscription_id) REFERENCES package_subscription (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_6DC044C512FDAB7C ON `group` (package_subscription_id)');
         $this->addSql('ALTER TABLE group_assignment CHANGE role role enum(\'member\', \'moderator\', \'administrator\')');
-        $this->addSql('ALTER TABLE mentoring_contract_request CHANGE status status enum(\'approved\', \'cancelled\', \'pending\', \'rejected\')');
+        $this->addSql('ALTER TABLE mentoring_contract_request DROP FOREIGN KEY FK_BA4BD4065A6C0D6B');
+        $this->addSql('DROP INDEX IDX_BA4BD4065A6C0D6B ON mentoring_contract_request');
+        $this->addSql('ALTER TABLE mentoring_contract_request DROP skill_id_id, CHANGE status status enum(\'approved\', \'cancelled\', \'pending\', \'rejected\')');
         $this->addSql('ALTER TABLE user CHANGE gender gender enum(\'male\', \'female\')');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE `group` DROP FOREIGN KEY FK_6DC044C512FDAB7C');
-        $this->addSql('DROP INDEX UNIQ_6DC044C512FDAB7C ON `group`');
-        $this->addSql('ALTER TABLE `group` DROP package_subscription_id');
         $this->addSql('ALTER TABLE group_assignment CHANGE role role VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('ALTER TABLE mentoring_contract_request CHANGE status status VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE mentoring_contract_request ADD skill_id_id INT NOT NULL, CHANGE status status VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE mentoring_contract_request ADD CONSTRAINT FK_BA4BD4065A6C0D6B FOREIGN KEY (skill_id_id) REFERENCES user_skill (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
+        $this->addSql('CREATE INDEX IDX_BA4BD4065A6C0D6B ON mentoring_contract_request (skill_id_id)');
         $this->addSql('ALTER TABLE user CHANGE gender gender VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }

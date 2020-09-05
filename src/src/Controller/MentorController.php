@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\MentoringPreferences;
-use App\Entity\Skill;
 use App\Entity\User;
+use App\Entity\Skill;
+use App\Entity\MentoringPreferences;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,12 +24,12 @@ class MentorController extends AbstractController
     public function listMentorMentore(EntityManagerInterface $manager)
     {
         $users = $manager->getRepository(User::class)->findAll();
-        $usersSkills = $manager->getRepository(Skill::class)->findAll();
-
-
+        $Skills = $manager->getRepository(Skill::class)->findAll();
+        
+        
 
         return $this->render('mentor/list.html.twig', [
-            'Users'=>$users,
+            'Users'=>$users, 'Skills'=>$Skills
 
         ]);
     }
@@ -42,8 +43,8 @@ class MentorController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function profilMentor($id, EntityManagerInterface $manager){
-        $user=$manager->getRepository(User::class)->find($id);
+    public function profilMentor(Request $request, User $user){
+        $repository = $this->getDoctrine()->getRepository(User::class);
 /*dd($user);*/
         $datetime = new \DateTime();
         $date = $datetime->format('Y-m-d');
@@ -96,6 +97,7 @@ class MentorController extends AbstractController
      * @throws \Exception
      */
 
+<<<<<<< HEAD
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function contratObjectifs(EntityManagerInterface $manager)
     {
@@ -106,4 +108,6 @@ class MentorController extends AbstractController
         return $this->render('mentor/relations/contrat//objectifs/objectifs.html.twig');
     }
 
+=======
+>>>>>>> backMentorat
 }
