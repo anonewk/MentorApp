@@ -35,6 +35,23 @@ class MentorController extends AbstractController
     }
 
     /**
+     * Fonction pour filtrer les mentors et mentorées
+     *
+     * @Route("/mentor_mentore/list_filter", name="mentor_mentore_list_filter")
+     * 
+     */
+    public function listMentorMentoreFiltre(EntityManagerInterface $manager, Request $request){
+        $users = $manager->getRepository(User::class)->findAll();
+
+        $skills=$request->request->get('skills');
+        $preferences=$request->request->get('preferences');
+        if(!empty($skills)>=1 or !empty($preferences)>=1){
+            echo 'ok';
+        }
+        die();
+    }
+
+    /**
      * Controller pour afficher le profil de mentor
      *
      * @Route("/mentor_mentore/profil/{id}", name="mentor_mentore_profil")

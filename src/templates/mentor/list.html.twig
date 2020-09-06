@@ -22,14 +22,19 @@
             </div>
         </div>
 
-        <div class="rounded-btn ">
+        <div class="rounded-btn">
             {% for User in Users %}
                 {% set country = "" %}
                 {% if (User.country is defined) and (User.country !="" ) %}
                     {% set country = ' , '~ User.country %}
                 {% endif %}
 
-                <div class="bg-primary mb-2 h-40">
+                <div class="bg-primary mb-2 h-40 mentor_div  mentor_div_{{ User.id }}" id="{{ User.id }}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isOnceAWeek" value="{{ User.mentoringPreferences.frequencyPreferences.isOnceAWeek }}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isTwiceAWeek" value="{{ User.mentoringPreferences.frequencyPreferences.isTwiceAWeek}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isEveryDay" value="{{ User.mentoringPreferences.frequencyPreferences.isEveryDay}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isTwiceAMonth" value="{{ User.mentoringPreferences.frequencyPreferences.isTwiceAMonth}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isOnceAMonth" value="{{ User.mentoringPreferences.frequencyPreferences.isOnceAMonth}}">
                     <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
                         <img  src="{{ User.displayPhoto() }}" alt="User">
                     </div>
@@ -56,7 +61,9 @@
                                         <span class=" p* font-thin text-sm rounded-btn border w-4/5">
                                                 {{ UserSkills.Skill.name }}
                                         </span>
+                                        <input class="hidden_skill" type="hidden" value="{{ UserSkills.skill.id }}">
                                     {% endfor %}
+                                    
                                 </div>
                         </div>
 
@@ -83,13 +90,11 @@
 
                     </div>
                     <div>
-                        <input type="checkbox" name="vehicle1" value="Bike">
-                        <label for="vehicle1"> I have a bike</label><br>
-                        <input type="checkbox" name="vehicle2" value="Car">
-                        <label for="vehicle2"> I have a car</label><br>
-                        <input type="checkbox" name="vehicle3" value="Boat">
-                        <label for="vehicle3"> I have a boat</label><br><br>
-                        <input type="submit" value="Submit">
+                        {% for Skill in Skills %}
+                            <input class="check_skill_option" type="checkbox" id="skill_Skill.{{ Skill.id }}" name="{{ Skill.id }}">
+                            <label class="label_skill_frequence" for="skill_Skill.{{ Skill.id }}">{{ Skill.name }}</label><br>
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
@@ -103,13 +108,16 @@
 
                     </div>
                     <div class="">
-                        <input type="checkbox" name="vehicle1" value="Bike">
-                        <label for="vehicle1"> I have a bike</label><br>
-                        <input type="checkbox" name="vehicle2" value="Car">
-                        <label for="vehicle2"> I have a car</label><br>
-                        <input type="checkbox" name="vehicle3" value="Boat">
-                        <label for="vehicle3"> I have a boat</label><br><br>
-                        <input type="submit" value="Submit">
+                        <input class="check_preference_option" type="checkbox" id="Tous_les_jours" name="isEveryDay">
+                        <label class="label_skill_frequence" for="Tous_les_jours">Tous les jours</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Une_fois_par_semaine" name="isOnceAWeek">
+                        <label class="label_skill_frequence" for="Une_fois_par_semaine">Une fois par semaine</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_semaine" name="isTwiceAWeek">
+                        <label class="label_skill_frequence" for="Deux_fois_par_semaine">Deux fois par semaine</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Une_fois_par_mois" name="isOnceAMonth">
+                        <label class="label_skill_frequence" for="Une_fois_par_mois">Une fois par mois</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_mois" name="isTwiceAMonth">
+                        <label class="label_skill_frequence" for="Deux_fois_par_mois">Deux fois par mois</label><br>
                     </div>
                 </div>
             </div>
@@ -117,24 +125,69 @@
         </div>
     </form>
 
-    {% for Skill in Skills %}
-
-       <input class="check_skill_option" type="checkbox" id="skill_Skill.{{ Skill.id }}" name="{{ Skill.id }}">
-       <label class="label_skill_frequence" for="skill_Skill.{{ Skill.id }}">{{ Skill.name }}</label><br>
-    {% endfor %}
-
-    <hr>
-        <input class="check_preference_option" type="checkbox" id="Tous_les_jours" name="Tous_les_jours">
-        <label class="label_skill_frequence" for="Tous_les_jours">Tous les jours</label><br>
-        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_semaine" name="Deux_fois_par_semaine">
-        <label class="label_skill_frequence" for="Deux_fois_par_semaine">Deux fois par semaine</label><br>
-        <input class="check_preference_option" type="checkbox" id="Une_fois_par_semaine" name="Une_fois_par_semaine">
-        <label class="label_skill_frequence" for="Une_fois_par_semaine">Une fois par semaine</label><br>
-        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_semaine" name="Deux_fois_par_semaine">
-        <label class="label_skill_frequence" for="Deux_fois_par_semaine">Deux fois par semaine</label><br>
-        <input class="check_preference_option" type="checkbox" id="Une_fois_par_mois" name="Une_fois_par_mois">
-        <label class="label_skill_frequence" for="Une_fois_par_mois">Une fois par mois</label><br>
-        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_mois" name="Deux_fois_par_mois">
-        <label class="label_skill_frequence" for="Deux_fois_par_mois">Deux fois par mois</label><br>
+   
+       
  
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        jQuery(document).ready(function(){
+            $(".check_skill_option").click(function(){
+                var skillOptions=[];
+                
+                var ctrSkillOption = 0;
+                var ctrPreferenceOption = 0;
+                $(".check_skill_option:checked"). each(function(){
+                        ctrSkillOption++;
+                        skillOptions.push($(this).attr('name'));
+                        
+                })
+
+                
+                $(".mentor_div").hide();
+                $(".hidden_skill").each(function(){
+                   var id_skill = $(this).val();
+                   for (var iter = 0; iter < skillOptions.length; iter++) {
+                         if (jQuery.inArray(id_skill ,skillOptions) != -1) {
+                            $(this).parents(".mentor_div").show();
+                         };
+                    }
+                });
+
+                if(skillOptions.length<=0){
+                    $(".mentor_div").show();
+                }
+                
+                $(".hidden_skill").hide();
+
+                //console.log(skillOptions);
+                //console.log(preferenceOptions);
+
+                
+            });
+
+
+
+
+             $(".check_preference_option").click(function(){
+                var prefenceOptions=[];
+                var ctr =0;
+                $(".mentor_div:visible").each( function(i, index){
+                    var idmentor=$(index).attr('id');
+                        var tabpref = [];
+                        $(".pref_"+idmentor).each(function(j, jtem){
+                            if($(jtem).val()!=null){
+                                    tabpref.push($(jtem).attr('name'));
+                            }
+                            
+                        })
+                    alert(tabpref);
+                });
+                    
+             });
+
+
+        });
+    </script>
 {% endblock %}
