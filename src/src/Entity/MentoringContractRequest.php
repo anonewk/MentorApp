@@ -46,6 +46,13 @@ class MentoringContractRequest
      */
     private $skillId;
 
+    public function initializePeremptionDate()
+    {
+        if (empty($this->peremptionDate)) {
+            $this->peremptionDate = new \DateTime();
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;

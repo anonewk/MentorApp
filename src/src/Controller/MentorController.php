@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Skill;
+use App\Entity\UserSkill;
 use App\Entity\MentoringPreferences;
+use App\Entity\MentoringContractRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +48,7 @@ class MentorController extends AbstractController
         $skills=$request->request->get('skills');
         $preferences=$request->request->get('preferences');
         if(!empty($skills)>=1 or !empty($preferences)>=1){
-            echo 'ok';
+            
         }
         die();
     }
@@ -68,6 +70,48 @@ class MentorController extends AbstractController
 
         return $this->render('mentor/profil.html.twig',['User' => $user]);
     }
+
+    /**
+     * Route pour demander un mentorat
+     * 
+     * @Route("/mentor/request/{id}", name="request_mentorat")
+     * 
+     */
+    public function demandeMentorat($id,EntityManagerInterface $manager){
+        $user=$manager->getRepository(User::class)->find($id);
+        return $this->render('mentor/request.html.twig', ['User'=>$user]);
+    }
+
+    /**
+     * Route pour traitement de la demande de mentorat
+     *
+     * @Route("mentorat/request/Send", name="mentorat_request_send")
+     * 
+     */
+    public function sendDemande(Request $request, EntityManagerInterface $manager){
+        $userId=$request->request->get('UserMentor');
+        $SkillId=$request->request->get('UserSkill');
+        $setUserSender=$this->getUser();
+        $UserRecipient=$manager->getRepository(User::class)->find($userId);
+        $UserSkill=$manager->getRepository(UserSkill::class)->find($SkillId);
+        $MentoringContractRequest = new MentoringContractRequest();
+        $MentoringContractRequest->initializePeremptionDate();
+        $MentoringContractRequest->setStatus('pending');
+        $MentoringContractRequest->setUserRecipient($UserRecipient);
+        $MentoringContractRequest->setUserSender($setUserSender);
+        $MentoringContractRequest->setSkillId($UserSkill);
+        $message ='Votre demande de Mentorat en <b>'.$UserSkill->getSkill()->getName().'</b> a été envoyé à <b>'.$UserRecipient->getFullName().'</b>';
+       
+        $manager->persist($MentoringContractRequest);
+        $manager->flush();
+
+        
+
+        return $this->render('mentor/profil.html.twig',['User' => $UserRecipient, 'flashMsg'=>$message]);
+    }
+
+
+
     /**
      * Controller pour afficher le profil de mentor
      *
