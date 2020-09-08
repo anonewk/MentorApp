@@ -97,7 +97,6 @@ class MentorController extends AbstractController
      * @throws \Exception
      */
 
-<<<<<<< HEAD
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function contratObjectifs(EntityManagerInterface $manager)
     {
@@ -108,6 +107,5 @@ class MentorController extends AbstractController
         return $this->render('mentor/relations/contrat//objectifs/objectifs.html.twig');
     }
 
-=======
->>>>>>> backMentorat
+
 }
