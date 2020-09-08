@@ -33,6 +33,17 @@
 
 
                 <div class="flex items-center justify-between px-4 py-3 sm:p-0">
+                {% set ctr = 0 %}
+
+                {% for receivedMentoringContractRequests in app.user.receivedMentoringContractRequests %}
+                    {% if (receivedMentoringContractRequests.status =='pending') %}
+                        {% set ctr = ctr + 1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if ctr > 0 %}
+                    <span style="color:red">Vous avez <b>{{ctr }} notifications!</b></span>
+                {% endif %}
                 </div>
                 <div id="dropdownAvatar" class="relative">
                 <button class="block h-8 w-8  overflow-hidden focus:outline-none focus:border-white">
@@ -45,6 +56,8 @@
                     <a href="{{path('app_logout')}}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Déconnexion</a>
                 </div>
             </div>
+                
+
             {% elseif (is_granted('ROLE_USER') == false)%}
                 <div class="navbar-menu hidden  ml-32 lg:order-1 lg:block">
                     <a class="text-primary block lg:inline-block text-blue-900 hover:text-inverse" href="{{ path('default')}}">MentorApp</a>

@@ -6,6 +6,7 @@
     <div class="flex">
         {# List mentor#}
 
+<<<<<<< HEAD
         <div class="w-7/12 m-auto mt-20 mb-40">
             <div class=" rounded-btn">
                 <div class=" m-auto rounded-btn">
@@ -22,6 +23,41 @@
                             46 mentors trouvés
                         </p>
 
+=======
+    <div class=" w-7/12 m-auto mt-20 mb-40 rounded-btn">
+        <div class=" m-auto rounded-btn">
+            <div>
+                <h3 class="text-lg  font-bold font-medium text-gray-900 mb-4">
+                    Parcourir les mentors
+                </h3>
+                <div class="max-w-2xl  text-gray-500 mb-4 float-right">
+                    <select class="form-select" name="" id="">
+                        <option value="">Classement</option>
+                    </select>
+                </div>
+                <p class="max-w-2xl text-sm leading-5 text-gray-500 mb-4">
+                    46 mentors trouvés
+                </p>
+
+            </div>
+        </div>
+
+        <div class="rounded-btn">
+            {% for User in Users %}
+                {% set country = "" %}
+                {% if (User.country is defined) and (User.country !="" ) %}
+                    {% set country = ' , '~ User.country %}
+                {% endif %}
+
+                <div class="bg-primary mb-2 h-40 mentor_div  mentor_div_{{ User.id }}" id="{{ User.id }}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isOnceAWeek" value="{{ User.mentoringPreferences.frequencyPreferences.isOnceAWeek }}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isTwiceAWeek" value="{{ User.mentoringPreferences.frequencyPreferences.isTwiceAWeek}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isEveryDay" value="{{ User.mentoringPreferences.frequencyPreferences.isEveryDay}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isTwiceAMonth" value="{{ User.mentoringPreferences.frequencyPreferences.isTwiceAMonth}}">
+                    <input class="pref_{{ User.id }}" type="hidden" name="isOnceAMonth" value="{{ User.mentoringPreferences.frequencyPreferences.isOnceAMonth}}">
+                    <div id="mentor_pictures" class="float-left overflow-hidden rounded-lg mt-6 ml-6">
+                        <img  src="{{ User.displayPhoto() }}" alt="User">
+>>>>>>> backMentorat
                     </div>
                 </div>
 
@@ -59,8 +95,14 @@
                                             <span class=" p* font-thin text-sm rounded-btn border w-4/5">
                                                 {{ UserSkills.Skill.name }}
                                         </span>
+<<<<<<< HEAD
                                         {% endfor %}
                                     </div>
+=======
+                                        <input class="hidden_skill" type="hidden" value="{{ UserSkills.skill.id }}">
+                                    {% endfor %}
+                                    
+>>>>>>> backMentorat
                                 </div>
 
                             </div>
@@ -81,6 +123,7 @@
         {#FILTER#}
         <div>
 
+<<<<<<< HEAD
             <form action="" class="w-11/12 mr-40 ">
                 <div>
                     <div class="mt-40 mb-5 p-5 rounded-btn bg-primary">
@@ -89,6 +132,18 @@
                                 <p class="text-lg  font-bold font-medium text-gray-900 mb-4">
                                     Compétences
                                 </p>
+=======
+                    </div>
+                    <div>
+                        {% for Skill in Skills %}
+                            <input class="check_skill_option" type="checkbox" id="skill_Skill.{{ Skill.id }}" name="{{ Skill.id }}">
+                            <label class="label_skill_frequence" for="skill_Skill.{{ Skill.id }}">{{ Skill.name }}</label><br>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+>>>>>>> backMentorat
 
                             </div>
                             <div>
@@ -101,6 +156,7 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <div class="rounded-btn p-5 bg-primary">
                         <div class="m-auto rounded-btn">
@@ -125,15 +181,98 @@
                                 <label class="label_skill_frequence" for="Deux_fois_par_mois">Deux fois par mois</label><br>
                             </div>
                         </div>
+=======
+                    <div class="">
+                        <input class="check_preference_option" type="checkbox" id="Tous_les_jours" name="isEveryDay">
+                        <label class="label_skill_frequence" for="Tous_les_jours">Tous les jours</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Une_fois_par_semaine" name="isOnceAWeek">
+                        <label class="label_skill_frequence" for="Une_fois_par_semaine">Une fois par semaine</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_semaine" name="isTwiceAWeek">
+                        <label class="label_skill_frequence" for="Deux_fois_par_semaine">Deux fois par semaine</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Une_fois_par_mois" name="isOnceAMonth">
+                        <label class="label_skill_frequence" for="Une_fois_par_mois">Une fois par mois</label><br>
+                        <input class="check_preference_option" type="checkbox" id="Deux_fois_par_mois" name="isTwiceAMonth">
+                        <label class="label_skill_frequence" for="Deux_fois_par_mois">Deux fois par mois</label><br>
+>>>>>>> backMentorat
                     </div>
 
                 </div>
             </form>
         </div>
+<<<<<<< HEAD
 
         {# END FILTER#}
     </div>
 
 
 
+=======
+    </form>
+
+   
+       
+ 
+>>>>>>> backMentorat
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        jQuery(document).ready(function(){
+            $(".check_skill_option").click(function(){
+                var skillOptions=[];
+                
+                var ctrSkillOption = 0;
+                var ctrPreferenceOption = 0;
+                $(".check_skill_option:checked"). each(function(){
+                        ctrSkillOption++;
+                        skillOptions.push($(this).attr('name'));
+                        
+                })
+
+                
+                $(".mentor_div").hide();
+                $(".hidden_skill").each(function(){
+                   var id_skill = $(this).val();
+                   for (var iter = 0; iter < skillOptions.length; iter++) {
+                         if (jQuery.inArray(id_skill ,skillOptions) != -1) {
+                            $(this).parents(".mentor_div").show();
+                         };
+                    }
+                });
+
+                if(skillOptions.length<=0){
+                    $(".mentor_div").show();
+                }
+                
+                $(".hidden_skill").hide();
+
+                //console.log(skillOptions);
+                //console.log(preferenceOptions);
+
+                
+            });
+
+
+
+
+             $(".check_preference_option").click(function(){
+                var prefenceOptions=[];
+                var ctr =0;
+                $(".mentor_div:visible").each( function(i, index){
+                    var idmentor=$(index).attr('id');
+                        var tabpref = [];
+                        $(".pref_"+idmentor).each(function(j, jtem){
+                            if($(jtem).val()!=null){
+                                    tabpref.push($(jtem).attr('name'));
+                            }
+                            
+                        })
+                    alert(tabpref);
+                });
+                    
+             });
+
+
+        });
+    </script>
 {% endblock %}

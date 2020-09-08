@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de mentorat à {{ User.firstName  }} {{ User.lastName }}{% endblock %}
+
+{% block body %}
+    <form action="{{ path('mentorat_request_send') }}" method="post">
+        <span>Choisissez le Skill qui concerne la demande de mentorat</span><br><br>
+        {% for UserSkill in User.userSkills %}
+            <input type="radio" id="{{ UserSkill.id }}" name="UserSkill" value="{{ UserSkill.id }}" checked>
+            <label for="{{ UserSkill.id }}">{{ UserSkill.Skill.name }}</label><br>
+        {% endfor %} 
+            <input type="hidden" name="UserMentor" value="{{ User.id }}">
+        <input style="background-color:yellow" type="submit" value="Valider la demande">
+    </form>
+{% endblock %}
