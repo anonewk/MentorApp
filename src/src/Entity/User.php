@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use App\Entity\MentoringContractRequest;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -175,6 +177,8 @@ class User implements UserInterface
      */
     private $ProfilePicture;
 
+
+
     public function __construct()
     {
         $this->contactMethods = new ArrayCollection();
@@ -186,6 +190,7 @@ class User implements UserInterface
         $this->groupAssignments = new ArrayCollection();
         $this->groupInvitations = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
