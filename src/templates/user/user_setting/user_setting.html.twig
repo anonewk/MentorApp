@@ -301,197 +301,158 @@
 
                 </div>
             </div>
-        </div>
-        <div>
-            <h3 class="text-lg   font-medium text-gray-900 mt-4">
-                Compétences
-            </h3>
-        </div>
-        <div class="bg-primary mt-4 pb-6 mb-4">
-            <div class="ml-6 flex flex-row">
+            <div>
+                <h3 class="text-lg   font-medium text-gray-900 mt-4">
+                    Compétences
+                </h3>
+            </div>
+            <div class="bg-primary mt-4 pb-6 mb-4">
+                <div class="ml-6 flex flex-row">
 
-                <span id="span_skills"></span>
-                <div id="div_skills" class="w-full">
-                    <span class="span_error span_error_skills"></span>
-                    <span class="span_success span_success_skills"></span>
+                    <span id="span_skills"></span>
+                    <div id="div_skills" class="w-full">
+                        <span class="span_error span_error_skills"></span>
+                        <span class="span_success span_success_skills"></span>
 
                         <input class="text-default bord"  placeholder="Compétence"  id="key_skill">
-                    <input type="hidden" value="" id="id_skill">
+                        <input type="hidden" value="" id="id_skill">
 
-                    <div id="div_result_skill" class="div_result_skill"></div>
+                        <div id="div_result_skill" class="div_result_skill"></div>
 
 
-                    <label for="select_level_ad"></label><select id="select_level_ad" class="w-40 mr-24 select_level" name="levelAdd">
-                        <option value="">Niveau</option>
-                        <option value="Novice">Novice</option>
-                        <option value="Intermédiaire">Intermédiaire</option>
-                        <option value="Compétent">Compétent</option>
-                        <option value="Avancé">Avancé</option>
-                        <option value="Expert">Expert</option>
-                    </select>
-                    <button>
-                        <input id="skill_ad" class="boutton_ajouter text-inverse hover:bg-secondary my-8 bg-default rounded-btn weight-btn p-2 "
-                               type="button" value="Ajouter">
-                    </button>
+                        <label for="select_level_ad"></label><select id="select_level_ad" class="w-40 mr-24 select_level" name="levelAdd">
+                            <option value="">Niveau</option>
+                            <option value="Novice">Novice</option>
+                            <option value="Intermédiaire">Intermédiaire</option>
+                            <option value="Compétent">Compétent</option>
+                            <option value="Avancé">Avancé</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                        <button>
+                            <input id="skill_ad" class="boutton_ajouter text-inverse hover:bg-secondary my-8 bg-default rounded-btn weight-btn p-2 "
+                                   type="button" value="Ajouter">
+                        </button>
 
+                    </div>
                 </div>
-            </div>
-            <table id="edit_skill">
-                {% if user.userSkills is not null %}
+                <table id="edit_skill">
+                    {% if user.userSkills is not null %}
 
-                    {% for skill in user.userSkills %}
-                        <tr class="tr_skill_{{ skill.id }}">
-                            <td>
-                                <input id="inputTxt_skill_{{ skill.id }}" class="input_skill skill_up{{ skill.id }} w-full text-default hover:bg-white hover:border-gray-300 f focus:shadow-outline" type="text"  placeholder="Compétence" value="{{ skill.Skill.name }}">
-                            </td>
-                            <td>
-                                <select class="select_level" name="levelUp" id="level_{{ skill.id }}">
-                                    <option value="Novice" {% if (skill.level == 'Novice') %} selected="selected" {% endif %}>Novice</option>
-                                    <option value="Intermédiaire" {% if (skill.level == 'Intermédiaire') %} selected="selected" {% endif %}>Intermédiaire</option>
-                                    <option value="Compétent" {% if (skill.level == 'Compétent') %} selected="selected" {% endif %}>Compétent</option>
-                                    <option value="Avancé" {% if (skill.level == 'Avancé') %} selected="selected" {% endif %}>Avancé</option>
-                                    <option value="Expert" {% if (skill.level == 'Expert') %} selected="selected" {% endif %}>Expert</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input id="skill_up{{ skill.id }}" class="input_button_skill boutton_skill_update" type="Button" value="Modifier">
-                                <input id="update_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
-                                <input id="skill_upd{{ skill.id }}" class="input_button_skill boutton_skill_delete" type="Button" value="supprimer">
-                                <input id="delete_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </table>
-            <div id="div_list_skill">
-                <div class="flex flex-row bg-gray-50  py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                        {% for skill in user.userSkills %}
+                            <tr class="tr_skill_{{ skill.id }}">
+                                <td>
+                                    <input id="inputTxt_skill_{{ skill.id }}" class="input_skill skill_up{{ skill.id }} w-full text-default hover:bg-white hover:border-gray-300 f focus:shadow-outline" type="text"  placeholder="Compétence" value="{{ skill.Skill.name }}">
+                                </td>
+                                <td>
+                                    <select class="select_level" name="levelUp" id="level_{{ skill.id }}">
+                                        <option value="Novice" {% if (skill.level == 'Novice') %} selected="selected" {% endif %}>Novice</option>
+                                        <option value="Intermédiaire" {% if (skill.level == 'Intermédiaire') %} selected="selected" {% endif %}>Intermédiaire</option>
+                                        <option value="Compétent" {% if (skill.level == 'Compétent') %} selected="selected" {% endif %}>Compétent</option>
+                                        <option value="Avancé" {% if (skill.level == 'Avancé') %} selected="selected" {% endif %}>Avancé</option>
+                                        <option value="Expert" {% if (skill.level == 'Expert') %} selected="selected" {% endif %}>Expert</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input id="skill_up{{ skill.id }}" class="input_button_skill boutton_skill_update" type="Button" value="Modifier">
+                                    <input id="update_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
+                                    <input id="skill_upd{{ skill.id }}" class="input_button_skill boutton_skill_delete" type="Button" value="supprimer">
+                                    <input id="delete_skill" class="thisSkill" type="hidden" value="{{ skill.id }}">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+                <div id="div_list_skill">
                     {% if user.userSkills is not null %}
                     {% for skill in user.userSkills %}
-                    <div>
-                        <label class="text-sm leading-5 font-bold text-gray-500 ">
-                            {{ skill.Skill.name }}
-                        </label>
+                    <div class="flex flex-row bg-gray-50  py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+
+                        <div>
+                            <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                {{ skill.Skill.name }}
+                            </label>
+                        </div>
+                        <div>
+                            <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            <td class="td-value">{{ skill.level }}</td>
+                            </p>
+                        </div>
+                        <i data-feather="edit-2" class="ml-56 i-pen" id="edit_skill_user" style="color:#f2a365;"></i>
                     </div>
-                    <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                        <td class="td-value">{{ skill.level }}</td>
-                        </p>
-                    </div>
-                    <i data-feather="edit-2" class="ml-56 i-pen" id="edit_skill_user" style="color:#f2a365;"></i>
+
                 </div>
                 {% endfor %}
+
                 {% endif %}
             </div>
-        </div>
-        <div class="flex mt-4">
-            <h3 class="text-lg  font-medium ">Moyen de contact</h3>
-            <button id="new_contact" class="hover:bg-secondary text-white bg-inverse text-inverse rounded-b-btn ml-4 h-6 w-20 ">Nouveau</button>
-        </div>
-        <div class="bg-primary">
-            <div id="all_contact">
-                <span class="span_error span_error_contact"></span>
-                <span class="span_success span_success_contact"></span>
-                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <div>
-                        <label class="text-sm leading-5 font-bold text-gray-500 ">
-                            Email
-                        </label>
-                    </div>
-                    <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                            {{ app.user.emailAddress }}
-                        </p>
-                    </div>
-                    <i data-feather="edit-2" class="ml-56 " style="color:gray "></i>
-                </div>
-                {% for contactMethod in app.user.contactMethods %}
-                    <hr id="hr_contactM_{{ contactMethod.id }}" class="border-b-2 border-gray-900 mx-6" style="color:#ececec;">
 
-                    <div id="div_contactM_{{ contactMethod.id }}" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
-                        <div>
-                            <label class="text-sm leading-5 font-bold text-gray-500 labelContact data_contact label_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
-                                {{ contactMethod.Name }}
-                            </label>
-                            <input id="input_nameContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Name }}" class="input_contact input_contact_{{ contactMethod.id }}">
-                        </div>
-                        <div>
-                            <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 data_contact p_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
-                                {{ contactMethod.Value }}
-                            </p>
-                            <input id="input_valueContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Value }}" class="input_contact input_contact_{{ contactMethod.id }}">
-                            <input data-value="{{ contactMethod.Value }}" data-op="update" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="update_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Modifier">
-                            <input data-value="{{ contactMethod.Value }}" data-op="delete" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="delete_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Supprimer">
-                        </div>
-
-                        <div>
-                            <i data-feather="edit-2" data-value="{{ contactMethod.Value }}" data-name="{{ contactMethod.Name }}" data-id="{{ contactMethod.id }}" class="ml-56 i-pen editConactM" style="color:#f2a365"></i>
-
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-                <div id="div_add_contact" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <div>
-                        <input id="input_nameContact_new" class="input_add_contact contactadd_name" type="text" placeholder="Moyen de contact">
-                    </div>
-                    <div>
-                        <input id="input_valueContact_new" class="input_add_contact contactadd_value" type="text" placeholder="Contact">
-                        <input data-op="create" data-name="" data-value="" data-idc="new" id="contactadd_submit" class="input_add_contact btn-submit-contact" type="submit" value="Ajouter">
-                    </div>
-                </div>
-
+            <div class="flex mt-4">
+                <h3 class="text-lg  font-medium ">Moyen de contact</h3>
+                <button id="new_contact" class="hover:bg-secondary text-white bg-inverse text-inverse rounded-b-btn ml-4 h-6 w-20 ">Nouveau</button>
             </div>
-            <div>
-
-            </div>
-        </div>
-        <div class="flex mt-4">
-            <h3 class="text-lg  font-medium ">Premium</h3>
-        </div>
-        <div>
             <div class="bg-primary">
-                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  border-b-2">
-                    <div>
-                        <label class="text-sm leading-5 font-bold text-gray-500 ">
-                            90 jours
-                        </label>
+                <div id="all_contact">
+                    <span class="span_error span_error_contact"></span>
+                    <span class="span_success span_success_contact"></span>
+                    <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div>
+                            <label class="text-sm leading-5 font-bold text-gray-500 ">
+                                Email
+                            </label>
+                        </div>
+                        <div>
+                            <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{ app.user.emailAddress }}
+                            </p>
+                        </div>
+                        <i data-feather="edit-2" class="ml-56 " style="color:gray "></i>
                     </div>
-                    <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                            37 jours restants
-                        </p>
-                    </div>
-                    <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                            inactif
-                        </p>
-                    </div>
-                    <div>
-                        <a class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                            Activer
-                        </a>
-                    </div>
-                    <i data-feather="edit-2" class="ml-56 i-pen" style="color:#f2a365 "></i>
-                </div>
-                <div class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  border-b-2">
-                    <div>
-                        <label class="text-sm leading-5 font-bold text-gray-500 ">
-                            Premium
-                        </label>
-                    </div>
-                    <div>
-                        <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                            Accordé par votre abonnement au groupe Les Docteurs
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div>
+                    {% for contactMethod in app.user.contactMethods %}
+                        <hr id="hr_contactM_{{ contactMethod.id }}" class="border-b-2 border-gray-900 mx-6" style="color:#ececec;">
 
+                        <div id="div_contactM_{{ contactMethod.id }}" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6  ">
+                            <div>
+                                <label class="text-sm leading-5 font-bold text-gray-500 labelContact data_contact label_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
+                                    {{ contactMethod.Name }}
+                                </label>
+                                <input id="input_nameContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Name }}" class="input_contact input_contact_{{ contactMethod.id }}">
+                            </div>
+                            <div>
+                                <p class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 data_contact p_{{ contactMethod.id }} data_contact_{{ contactMethod.id }}">
+                                    {{ contactMethod.Value }}
+                                </p>
+                                <input id="input_valueContact_{{ contactMethod.id }}" type="text" value="{{ contactMethod.Value }}" class="input_contact input_contact_{{ contactMethod.id }}">
+                                <input data-value="{{ contactMethod.Value }}" data-op="update" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="update_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Modifier">
+                                <input data-value="{{ contactMethod.Value }}" data-op="delete" data-name="{{ contactMethod.Name }}" data-idc="{{ contactMethod.id }}" id="delete_contact_{{ contactMethod.id }}" class="btn-submit-contact btn_submit_{{ contactMethod.id }} input_contact input_contact_{{ contactMethod.id }}"  type="boutton" value="Supprimer">
+                            </div>
+
+                            <div>
+                                <i data-feather="edit-2" data-value="{{ contactMethod.Value }}" data-name="{{ contactMethod.Name }}" data-id="{{ contactMethod.id }}" class="ml-56 i-pen editConactM" style="color:#f2a365"></i>
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    <div id="div_add_contact" class="flex flex-row bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div>
+                            <input id="input_nameContact_new" class="input_add_contact contactadd_name" type="text" placeholder="Moyen de contact">
+                        </div>
+                        <div>
+                            <input id="input_valueContact_new" class="input_add_contact contactadd_value" type="text" placeholder="Contact">
+                            <input data-op="create" data-name="" data-value="" data-idc="new" id="contactadd_submit" class="input_add_contact btn-submit-contact" type="submit" value="Ajouter">
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+
+                </div>
             </div>
+
+            <button class="hover:bg-inverse text-white bg-secondary px-3 py-3 text-inverse rounded-b-btn float-right mt-10 w-3/12">Supprimer mon compte</button>
+
         </div>
-        <button class="hover:bg-inverse text-white bg-secondary px-3 py-3 text-inverse rounded-b-btn float-right mt-10 w-3/12">Supprimer mon compte</button>
     </div>
 {% endblock %}
 

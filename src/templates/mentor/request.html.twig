@@ -3,13 +3,23 @@
 {% block title %}Demande de mentorat à {{ User.firstName  }} {{ User.lastName }}{% endblock %}
 
 {% block body %}
-    <form action="{{ path('mentorat_request_send') }}" method="post">
-        <span>Choisissez le Skill qui concerne la demande de mentorat</span><br><br>
-        {% for UserSkill in User.userSkills %}
-            <input type="radio" id="{{ UserSkill.id }}" name="UserSkill" value="{{ UserSkill.id }}" checked>
-            <label for="{{ UserSkill.id }}">{{ UserSkill.Skill.name }}</label><br>
-        {% endfor %} 
-            <input type="hidden" name="UserMentor" value="{{ User.id }}">
-        <input style="background-color:yellow" type="submit" value="Valider la demande">
-    </form>
+    <div class=" w-8/12 m-auto mt-24 mb-40 rounded-btn ">
+
+        <form action="{{ path('mentorat_request_send') }}" method="post" class="w-8/12 bg-primary p-5 m-auto mt-24 mb-40 rounded-btn">
+            <span>Choisissez le Skill qui concerne la demande de mentorat</span><br><br>
+            {% for UserSkill in User.userSkills %}
+                <input type="radio" class="form-radio" id="{{ UserSkill.id }}" name="UserSkill" value="{{ UserSkill.id }}" checked>
+                <label class="inline-flex items-center" for="{{ UserSkill.id }}">{{ UserSkill.Skill.name }}</label><br>
+            {% endfor %}
+
+            <div class="flex justify-between items-center mt-4">
+                <button class="hover:bg-secondary bg-blue-500 hover:bg-blue-400 px-4 py-2 text-white"></button>
+                <input type="hidden" name="UserMentor" value="{{ User.id }}">
+                <input class="hover:bg-inverse hover:text-inverse bg-secondary  px-4 py-2 text-white cursor-pointer" type="submit" value="Valider la demande">
+            </div>
+        </form>
+
+
+    </div>
+
 {% endblock %}

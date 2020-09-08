@@ -8,6 +8,7 @@ use App\Entity\UserSkill;
 use App\Entity\MentoringPreferences;
 use App\Entity\MentoringContractRequest;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,6 @@ class MentorController extends AbstractController
      *
      * @Route("/mentor_mentore/list", name="mentor_mentore_list")
      * @param EntityManagerInterface $manager
-     * @param User $user
      * @return Response
      */
     public function listMentorMentore(EntityManagerInterface $manager)
@@ -31,7 +31,8 @@ class MentorController extends AbstractController
         
 
         return $this->render('mentor/list.html.twig', [
-            'Users'=>$users, 'Skills'=>$Skills
+            'Users'=>$users,
+            'Skills'=>$Skills
 
         ]);
     }
@@ -40,7 +41,8 @@ class MentorController extends AbstractController
      * Fonction pour filtrer les mentors et mentorées
      *
      * @Route("/mentor_mentore/list_filter", name="mentor_mentore_list_filter")
-     * 
+     * @param EntityManagerInterface $manager
+     * @param Request $request
      */
     public function listMentorMentoreFiltre(EntityManagerInterface $manager, Request $request){
         $users = $manager->getRepository(User::class)->findAll();
@@ -57,10 +59,10 @@ class MentorController extends AbstractController
      * Controller pour afficher le profil de mentor
      *
      * @Route("/mentor_mentore/profil/{id}", name="mentor_mentore_profil")
-     * @param $id
-     * @param EntityManagerInterface $manager
+     * @param Request $request
+     * @param User $user
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function profilMentor(Request $request, User $user){
         $repository = $this->getDoctrine()->getRepository(User::class);
@@ -100,8 +102,19 @@ class MentorController extends AbstractController
         $MentoringContractRequest->setUserRecipient($UserRecipient);
         $MentoringContractRequest->setUserSender($setUserSender);
         $MentoringContractRequest->setSkillId($UserSkill);
-        $message ='Votre demande de Mentorat en <b>'.$UserSkill->getSkill()->getName().'</b> a été envoyé à <b>'.$UserRecipient->getFullName().'</b>';
-       
+        $message ='
+<div class="bg-teal-lightest border-t-4 border-teal rounded-b text-teal-darkest px-4 py-3 shadow-md my-2" role="alert">
+  <div class="flex">
+    <svg class="h-6 w-6 text-teal mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg>
+    <div>
+      <p class="font-bold">Votre demande de mentorat à été envoyé a '.$UserRecipient->getFullName().'</p>
+      <p class="text-sm">Pour la compétence '.$UserSkill->getSkill()->getName().'</p>
+    </div>
+  </div>
+</div>
+';
+/*Votre demande de Mentorat en <b>'.$UserSkill->getSkill()->getName().'</b> a été envoyé à <b>'.$UserRecipient->getFullName().'</b>';*/
+
         $manager->persist($MentoringContractRequest);
         $manager->flush();
 
@@ -118,7 +131,7 @@ class MentorController extends AbstractController
      * @Route("/mentor_mentore/relations", name="mentor_mentore_relations")
      * @param EntityManagerInterface $manager
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function relation(EntityManagerInterface $manager)
@@ -137,7 +150,7 @@ class MentorController extends AbstractController
      * @Route("/mentor_mentore/relations/contrat", name="mentor_mentore_relations_contrat")
      * @param EntityManagerInterface $manager
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
 
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
@@ -155,7 +168,7 @@ class MentorController extends AbstractController
      * @Route("/mentor_mentore/relations/contrat/objectifs.html.twig", name="mentor_mentore_relations_contrat_objectif")
      * @param EntityManagerInterface $manager
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
 
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
