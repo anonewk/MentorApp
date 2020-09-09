@@ -33,77 +33,91 @@
                 </div>
 
 
-              {#  <div class="flex items-center justify-between px-4 py-3 sm:p-0">
+                {#  <div class="flex items-center justify-between px-4 py-3 sm:p-0">
 
 
-                </div>
-              #}
-<div class="flex">
-    {# Notification #}
+                  </div>
+                #}
+                <div class="flex">
+                    {# Notification #}
 
-    <div class="mr-8">
-        {% set ctr = 0 %}
-
-
-        <div x-data="{ dropdownOpen: false }" class="relative ">
+                    <div class="mr-8">
+                        {% set ctr = 0 %}
 
 
-            <button @click="dropdownOpen = !dropdownOpen" class="flex relative z-10 block rounded-md bg-white p-2 ">
-                <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                </svg>
-
-            </button>
-
-            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
-
-            <div x-show="dropdownOpen" class="absolute right-0 mt-2 bg-secondary rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
-                {% for receivedMentoringContractRequests in app.user.receivedMentoringContractRequests %}
-                    {% if (receivedMentoringContractRequests.status =='pending') %}
-                        {% set ctr = ctr + 1 %}
-
-                        <div class="py-2 bg-primary">
+                        <div x-data="{ dropdownOpen: false }" class="relative ">
 
 
-                            {% if ctr > 0 %}
-                                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
-                                    {#<img class="h-8 w-8 rounded-full object-cover mx-1" src="{{ app.user.displayPhoto }}" alt="avatar">#}
-                                    <p class="text-gray-600 text-sm mx-2">
-                                        <span class="font-bold" href="#">{{ app.user.getLastname }} {{ app.user.getFirstName }}</span> Vous a envoyé <span class="font-bold text-blue-500" href="#">Une demande de</span> Mentoré
-                                    </p>
-                                </a>
+                            <button @click="dropdownOpen = !dropdownOpen" class="flex relative z-10 block rounded-md bg-white p-2 ">
+                                <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                </svg>
 
-                            {% else %}
+                            </button>
 
-                                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
-                                    {#<img class="h-8 w-8 rounded-full object-cover mx-1" src="{{ app.user.displayPhoto }}" alt="avatar">#}
-                                    <p class="text-gray-600 text-sm mx-2">
-                                        <span class="font-bold" href="#">Vous n'avez aucune notification</span>
-                                    </p>
-                                </a>
-                            {% endif %}
+                            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
+                            <div x-show="dropdownOpen" class="absolute right-0 mt-2 bg-secondary rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
+                                {% for receivedMentoringContractRequests in app.user.receivedMentoringContractRequests %}
+                                    {% if (receivedMentoringContractRequests.status =='pending') %}
+                                        {% set ctr = ctr + 1 %}
+                                        {#{{ ctr }}#}
+                                        <div class="py-2 bg-primary">
+
+
+                                            {% if ctr > 0 %}
+                                                <div class="flex">
+
+                                                    <div>
+
+                                                        <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                                                            {#<img class="h-8 w-8 rounded-full object-cover mx-1" src="{{ app.user.displayPhoto }}" alt="avatar">#}
+                                                            <p class="text-gray-600 text-sm mx-2">
+                                                                <span class="font-bold" href="#">{{ receivedMentoringContractRequests.UserSender.lastname }} {{ receivedMentoringContractRequests.UserSender.firstname }}</span> Vous a envoyé <span class="font-bold text-blue-500" href="#">Une demande de</span> Mentora pour
+                                                            </p>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="">
+
+                                                        <boutton>
+                                                            <p>Yes</p>
+                                                            <p>No</p>
+                                                        </boutton>
+                                                    </div>
+                                                </div>
+
+                                            {% else %}
+
+                                                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                                                    {#<img class="h-8 w-8 rounded-full object-cover mx-1" src="{{ app.user.displayPhoto }}" alt="avatar">#}
+                                                    <p class="text-gray-600 text-sm mx-2">
+                                                        <span class="font-bold" href="#">Vous n'avez aucune notification</span>
+                                                    </p>
+                                                </a>
+                                            {% endif %}
+
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="#" class="block bg-gray-800 text-white text-center font-bold py-2">Voir toutes les notifications</a>
+                            </div>
                         </div>
-                    {% endif %}
-                {% endfor %}
-                <a href="#" class="block bg-gray-800 text-white text-center font-bold py-2">Voir toutes les notifications</a>
-            </div>
-        </div>
 
-    </div>
-    {# END Notification #}
-                <div id="dropdownAvatar" class="relative flex">
-
-                    <button class="block h-8 w-8  overflow-hidden focus:outline-none focus:border-white">
-                        <img class="h-full w-full object-cover" src="{{ app.user.displayPhoto() }}" alt="Avatar">
-                    </button>
-                    <div id="dropdown" class="absolute right-0 mt-2 py-2 w-48 bg-primary mt-12 rounded-lg shadow-xl">
-                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">{{ app.user.firstName }} {{ app.user.lastname }}</a>
-                        <a href="{{ path('user_setting',{id: app.user.id}) }}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Paramètres</a>
-                        <a href="{{ path('mentor_mentore_relations') }}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Mes relations</a>
-                        <a href="{{path('app_logout')}}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Déconnexion</a>
                     </div>
-                </div>
+                    {# END Notification #}
+                    <div id="dropdownAvatar" class="relative flex">
+
+                        <button class="block h-8 w-8  overflow-hidden focus:outline-none focus:border-white">
+                            <img class="h-full w-full object-cover" src="{{ app.user.displayPhoto() }}" alt="Avatar">
+                        </button>
+                        <div id="dropdown" class="absolute right-0 mt-2 py-2 w-48 bg-primary mt-12 rounded-lg shadow-xl">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">{{ app.user.firstName }} {{ app.user.lastname }}</a>
+                            <a href="{{ path('user_setting',{id: app.user.id}) }}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Paramètres</a>
+                            <a href="{{ path('mentor_mentore_relations') }}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Mes relations</a>
+                            <a href="{{path('app_logout')}}" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Déconnexion</a>
+                        </div>
+                    </div>
                 </div>
 
 
