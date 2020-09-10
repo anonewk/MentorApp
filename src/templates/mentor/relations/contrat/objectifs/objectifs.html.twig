@@ -115,18 +115,23 @@
             <div class="mt-12 ml-16">
                 <div class="mt-10 space-y-5">
                     <div>
-                        <button id="ajouter_objectif" class="hover:bg-default  bg-secondary rounded-btn weight-btn p-2 ">
-                            <a class="text-inverse" href="">Ajouter</a>
+                        <button id="ajouter_objectif" class="modal-open hover:bg-default  bg-secondary rounded-btn text-inverse weight-btn p-2 ">
+                            Ajouter
                         </button>
                     </div>
                     <div>
-                        <button id="modifier_objectif" class="hover:bg-default bg-secondary rounded-btn weight-btn p-2 ">
-                            <a class="text-inverse" href="">Modifier</a>
+                        <button id="modifier_objectif" class="modal-open-modifier hover:bg-default text-inverse bg-secondary rounded-btn weight-btn p-2 ">
+                            Modifier
                         </button>
                     </div>
                     <div>
-                        <button id="supprimer_objectif" class="hover:bg-default  bg-inverse rounded-btn weight-btn p-2 ">
-                            <a class="text-inverse" href="">Supprimer</a>
+                        <button id="supprimer_objectif" class="modal-open-valider hover:bg-default text-inverse bg-inverse rounded-btn weight-btn p-2 ">
+                            Valider
+                        </button>
+                    </div>
+                    <div>
+                        <button id="supprimer_objectif" class="modal-open-valider hover:bg-default text-inverse bg-inverse rounded-btn weight-btn p-2 ">
+                            <a href="">Retour</a>
                         </button>
                     </div>
                 </div>
@@ -136,24 +141,127 @@
         </div>
 
 
-        {# Pop up modifier#}
-        <div id="pop_up_ajouter" class="bg-primary rounded md:w-1/3 w-1/2 border shadow-lg  m-auto" style="z-index: 1;">
-            <div class="rounded-t bg-teal-500">
-                <div class="relative py-3 px-2 flex">
-                    <span class="font-semibold text-white md:text-base text-sm">Popup Title</span>
-                    <div class="absolute right-0 top-0 -mr-2 -mt-2 border cursor-pointer shadow-lg bg-white z-10 p-1 rounded-full p-2">
-                        <img src="https://image.flaticon.com/icons/svg/151/151882.svg"/ class="w-2 h-2">
+        {# Pop up ajouter#}
+        <!--Modal-->
+        <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div class="modal-overlay absolute w-full h-full opacity-50"></div>
+
+            <div class="modal-container bg-primary w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+                <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                    </svg>
+                    <span class="text-sm">(Esc)</span>
+                </div>
+
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="flex justify-between items-center pb-3">
+                        <p class="text-2xl font-bold">Ajouter un objectif</p>
+                        <div class="modal-close cursor-pointer z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                            </svg>
+                        </div>
                     </div>
+
+                    <!--Body-->
+
+                    <!--Footer-->
+                    <div class="flex justify-end pt-2">
+                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Ajouter</button>
+                        <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
+                    </div>
+
                 </div>
             </div>
-            <div class="bg-gray-200 md:text-base text-sm border-b p-2 h-24">
-                <p>Popup Messages</p>
-            </div>
-            <div class="p-2 flex justify-end rounded-b">
-                <button class="focus:outline-none py-1 px-2 md:py-2 md:px-3 w-24 mr-2 bg-blue-700 hover:bg-blue-600 text-white rounded">OK</button>
-                <button class="focus:outline-none py-1 px-2 md:py-2 md:px-3 w-24 bg-red-700 hover:bg-red-600 text-white rounded">Cancel</button>
+        </div>
+        {# END  Pop up ajouter#}
+
+        {# Pop up Modifier#}
+        <!--Modal-->
+        <div class="modal-modifier opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div class="modal-overlay-modifier absolute w-full h-full opacity-50"></div>
+
+            <div class="modal-container-modifier bg-primary w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+                <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                    </svg>
+                    <span class="text-sm">(Esc)</span>
+                </div>
+
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content-modifier py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="flex justify-between items-center pb-3">
+                        <p class="text-2xl font-bold">Modifier un objectif</p>
+                        <div class="modal-close-modifier cursor-pointer z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!--Body-->
+
+                    <!--Footer-->
+                    <div class="flex justify-end pt-2">
+                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Modifier</button>
+                        <button class="modal-close-modifier px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
+                    </div>
+
+                </div>
             </div>
         </div>
+        {# END  Pop up modifier#}
+
+        {# Pop up valider#}
+        <!--Modal-->
+        <div class="modal-valider opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div class="modal-overlay-valider absolute w-full h-full opacity-50"></div>
+
+            <div class="modal-container-valider bg-primary w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+                <div class="modal-close-valider absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                    </svg>
+                    <span class="text-sm">(Esc)</span>
+                </div>
+
+                <!-- Add margin if you want to see some of the overlay behind the modal-->
+                <div class="modal-content-valider py-4 text-left px-6">
+                    <!--Title-->
+                    <div class="flex justify-between items-center pb-3">
+                        <p class="text-2xl font-bold">Valider un objectif</p>
+                        <div class="modal-close-valider cursor-pointer z-50">
+                            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!--Body-->
+
+                    <!--Footer-->
+                    <div class="flex justify-end pt-2">
+                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">valider</button>
+                        <button class="modal-close-valider px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {# END  Pop up valider#}
+
+
+
+
+
 
 
 
@@ -182,7 +290,124 @@
                   dropdown.style.display = "block";
               }
 
-          })
+          });
+
+
+          var openmodal = document.querySelectorAll('.modal-open');
+          var openmodalModifier = document.querySelectorAll('.modal-open-modifier');
+          var openmodalValider = document.querySelectorAll('.modal-open-valider');
+
+          for (var i = 0; i < openmodal.length; i++) {
+              openmodal[i].addEventListener('click', function(event){
+                  event.preventDefault();
+                  toggleModal()
+              })
+          }
+
+          for (var i = 0; i < openmodalModifier.length; i++) {
+              openmodalModifier[i].addEventListener('click', function(event){
+                  event.preventDefault();
+                  toggleModalModifier()
+              })
+          }
+
+          for (var i = 0; i < openmodalValider.length; i++) {
+              openmodalValider[i].addEventListener('click', function(event){
+                  event.preventDefault();
+                  toggleModalValider()
+              })
+          }
+
+          const overlay = document.querySelector('.modal-overlay');
+          overlay.addEventListener('click', toggleModal);
+
+          const overlayModifier = document.querySelector('.modal-overlay-modifier');
+          overlay.addEventListener('click', toggleModalModifier);
+
+          const overlayValider = document.querySelector('.modal-overlay-valider');
+          overlay.addEventListener('click', toggleModalValider);
+
+
+          var closemodal = document.querySelectorAll('.modal-close');
+          var closemodalModifier = document.querySelectorAll('.modal-close-modifier');
+          var closemodalVallider = document.querySelectorAll('.modal-close-valider');
+
+          for (var i = 0; i < closemodal.length; i++) {
+              closemodal[i].addEventListener('click', toggleModal)
+          }
+          for (var i = 0; i < closemodalModifier.length; i++) {
+              closemodalModifier[i].addEventListener('click', toggleModalModifier)
+          }
+          for (var i = 0; i < closemodalVallider.length; i++) {
+              closemodalVallider[i].addEventListener('click', toggleModalValider)
+          }
+
+          document.onkeydown = function(evt) {
+              evt = evt || window.event;
+              var isEscape = false;
+              if ("key" in evt) {
+                  isEscape = (evt.key === "Escape" || evt.key === "Esc")
+              } else {
+                  isEscape = (evt.keyCode === 27)
+              }
+              if (isEscape && document.body.classList.contains('modal-active')) {
+                  toggleModal()
+              }
+          };
+          document.onkeydown = function(evt) {
+              evt = evt || window.event;
+              var isEscape = false;
+              if ("key" in evt) {
+                  isEscape = (evt.key === "Escape" || evt.key === "Esc")
+              } else {
+                  isEscape = (evt.keyCode === 27)
+              }
+              if (isEscape && document.body.classList.contains('modal-active-modifier')) {
+                  toggleModalModifier()
+              }
+          };
+          document.onkeydown = function(evt) {
+              evt = evt || window.event;
+              var isEscape = false;
+              if ("key" in evt) {
+                  isEscape = (evt.key === "Escape" || evt.key === "Esc")
+              } else {
+                  isEscape = (evt.keyCode === 27)
+              }
+              if (isEscape && document.body.classList.contains('modal-active-valider')) {
+                  toggleModalValider()
+              }
+          };
+
+
+
+
+
+          function toggleModal () {
+              const body = document.querySelector('body');
+              const modal = document.querySelector('.modal');
+              modal.classList.toggle('opacity-0');
+              modal.classList.toggle('pointer-events-none');
+              body.classList.toggle('modal-active');
+          }
+
+
+          function toggleModalModifier () {
+              const body = document.querySelector('body');
+              const modal = document.querySelector('.modal-modifier');
+              modal.classList.toggle('opacity-0');
+              modal.classList.toggle('pointer-events-none');
+              body.classList.toggle('modal-active-modifier');
+          }
+
+
+          function toggleModalValider () {
+              const body = document.querySelector('body');
+              const modal = document.querySelector('.modal-valider');
+              modal.classList.toggle('opacity-0');
+              modal.classList.toggle('pointer-events-none');
+              body.classList.toggle('modal-active-valider');
+          }
 
       </script>
       <script>

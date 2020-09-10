@@ -149,6 +149,7 @@ class MentorController extends AbstractController
      * Controller pour afficher le profil de mentor
      *
      * @Route("/mentor_mentore/relations/contrat/{id}", name="mentor_mentore_relations_contrat")
+     * @param $id
      * @param EntityManagerInterface $manager
      * @return Response
      * @throws Exception
@@ -167,20 +168,21 @@ class MentorController extends AbstractController
     /**
      * Controller pour afficher le profil de mentor
      *
-     * @Route("/mentor_mentore/relations/contrat/objectifs.html.twig", name="mentor_mentore_relations_contrat_objectif")
+     * @Route("/mentor_mentore/relations/contrat/{id}/objectifs.html.twig", name="objectifs")
      * @param EntityManagerInterface $manager
+     * @param $id
      * @return Response
      * @throws Exception
      */
 
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
-    public function contratObjectifs(EntityManagerInterface $manager)
+    public function contratObjectifs($id, EntityManagerInterface $manager)
     {
         /*dd($user);*/
         $datetime = new \DateTime();
         $date = $datetime->format('Y-m-d');
 
-        return $this->render('mentor/relations/contrat//objectifs/objectifs.html.twig');
+        return $this->render('mentor/relations/contrat/objectifs/objectifs.html.twig');
     }
 
     /**
