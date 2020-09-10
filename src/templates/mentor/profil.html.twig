@@ -12,7 +12,11 @@
                 {% endif %}
                 <div class="float-right">
                         <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 mr-5">
-                                <a class="text-inverse" href="{{ path('request_mentorat',{'id':User.id}) }}">Envoyer une demande de mentorat</a>
+                                        {% if (User.userSkills|length) > 1 %}
+                                                <a class="text-inverse" href="{{ path('request_mentorat',{'id':User.id}) }}">Envoyer une demande de mentorat</a>
+                                        {% else %}
+                                                <a class="text-inverser" style="color:white">Aucune compétence resnseignée</a>
+                                        {% endif %}
                         </button>
                 </div>
 
@@ -196,7 +200,11 @@
                         <hr class="border-b-2 border-gray-900 mx-6 " style="color:#ececec;">
                         <div class="float-right">
                                 <button class="hover:bg-default my-8 bg-secondary rounded-btn weight-btn p-2 ">
-                                        <a class="text-inverse" href="">Envoyer une demande de mentorat</a>
+                                        {% if (User.userSkills|length) > 1 %}
+                                                <a class="text-inverse" href="{{ path('request_mentorat',{'id':User.id}) }}">Envoyer une demande de mentorat</a>
+                                        {% else %}
+                                                <a class="text-inverser" style="color:white">Aucune compétence resnseignée</a>
+                                        {% endif %}
                                 </button>
                         </div>
                 </div>

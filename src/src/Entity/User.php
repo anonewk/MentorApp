@@ -179,6 +179,7 @@ class User implements UserInterface
 
 
 
+
     public function __construct()
     {
         $this->contactMethods = new ArrayCollection();
@@ -191,6 +192,7 @@ class User implements UserInterface
         $this->groupInvitations = new ArrayCollection();
     }
 
+   
 
     public function getId(): ?int
     {

@@ -31,7 +31,7 @@
                         {#A remplacer par les données stocké en bdd#}
 
                         <div class="grid grid-flow-col grid-rows-4">
-                            <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #57</span>
+                            <span class="text-lg font-semibold">Mon contrat de mentorat avec <b>{{ contractRequest.UserSender.firstName }} {{ contractRequest.UserSender.lastName }}</b> #{{ contractRequest.UserSender.id }}</span>
                             <span class="text-sm">en tant que mentor</span>
                         </div>
 

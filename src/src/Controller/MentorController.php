@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Entity\User;
 use App\Entity\Skill;
 use App\Entity\UserSkill;
 use App\Entity\MentoringPreferences;
 use App\Entity\MentoringContractRequest;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MentorController extends AbstractController
@@ -147,20 +148,21 @@ class MentorController extends AbstractController
     /**
      * Controller pour afficher le profil de mentor
      *
-     * @Route("/mentor_mentore/relations/contrat", name="mentor_mentore_relations_contrat")
+     * @Route("/mentor_mentore/relations/contrat/{id}", name="mentor_mentore_relations_contrat")
      * @param EntityManagerInterface $manager
      * @return Response
      * @throws Exception
      */
 
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
-    public function contrat(EntityManagerInterface $manager){
+    public function contrat($id, EntityManagerInterface $manager){
 
         /*dd($user);*/
         $datetime = new \DateTime();
         $date = $datetime->format('Y-m-d');
+        $ContractRequest = $manager->getRepository(MentoringContractRequest::class)->find($id);
 
-        return $this->render('mentor/relations/contrat/contrat.html.twig');
+        return $this->render('mentor/relations/contrat/contrat.html.twig',['contractRequest'=>$ContractRequest]);
     }
     /**
      * Controller pour afficher le profil de mentor
@@ -179,6 +181,22 @@ class MentorController extends AbstractController
         $date = $datetime->format('Y-m-d');
 
         return $this->render('mentor/relations/contrat//objectifs/objectifs.html.twig');
+    }
+
+    /**
+     * Route d'acceptation et réfus de contrat de mentoring
+     *
+     * @Route("/mentor_mentore/status", name="rule_request")
+     */
+    public function accepteRefuseContrat(Request $request, EntityManagerInterface $manager){
+        $option=$request->request->get('option');
+        $requestId=$request->request->get('idRequest');
+        $MentoringContractRequest=$manager->getRepository(MentoringContractRequest::class)->find($requestId);
+        $MentoringContractRequest->setStatus($option);
+        $manager->persist($MentoringContractRequest);
+        $manager->flush();
+        $data=['reponse'=>'ok'];
+        return new JsonResponse($data);
     }
 
 

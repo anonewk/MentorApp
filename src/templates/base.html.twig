@@ -57,16 +57,17 @@
 
                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-                            <div x-show="dropdownOpen" class="absolute right-0 mt-2 bg-secondary rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
+                            <div  id="block_notification" x-show="dropdownOpen" class="absolute right-0 mt-2 bg-secondary rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
                                 {% for receivedMentoringContractRequests in app.user.receivedMentoringContractRequests %}
                                     {% if (receivedMentoringContractRequests.status =='pending') %}
                                         {% set ctr = ctr + 1 %}
                                         {#{{ ctr }}#}
+                                        
                                         <div class="py-2 bg-primary">
 
 
                                             {% if ctr > 0 %}
-                                                <div class="flex">
+                                                <div class="flex"  id="notification_{{ receivedMentoringContractRequests.id }}">
 
                                                     <div>
 
@@ -81,8 +82,10 @@
                                                     <div class="">
 
                                                         <boutton>
-                                                            <p>Yes</p>
-                                                            <p>No</p>
+                                                            <p style="cursor: pointer;" id="approved" class="button_notif">Yes</p>
+                                                            <input type="hidden" value="{{ receivedMentoringContractRequests.id }}">
+                                                            <p style="cursor: pointer;" id="cancelled" class="button_notif">No</p>
+                                                            <input type="hidden" value="{{ receivedMentoringContractRequests.id }}">
                                                         </boutton>
                                                     </div>
                                                 </div>
@@ -100,6 +103,7 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+                                <input type="hidden" value="{{ ctr }}" id="ctr">
                                 <a href="#" class="block bg-gray-800 text-white text-center font-bold py-2">Voir toutes les notifications</a>
                             </div>
                         </div>
@@ -144,6 +148,9 @@
 
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 {% block javascripts %}
+ 
+
+
     <script>
         var dropdown = document.getElementById('dropdown');
         var dropdownAvatar = document.getElementById('dropdownAvatar');
@@ -164,8 +171,40 @@
 
         feather.replace()
     </script>
+
+   
 {% endblock %}
 
 </body>
 
 </html>
+   <script>
+            jQuery(document).ready(function() {
+                $(".button_notif").click(function(){
+                    var option = $(this).attr('id');
+                    var idRequest = $(this).next().val();
+                    var ctr = $('#ctr').val();
+                    $.ajax({
+                        url: "{{ path('rule_request') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "option": option,
+                            "idRequest" : idRequest,
+                        },
+                        async: true,
+                        success: function (data){ 
+                            if(typeof(data.reponse) != 'undefined' && data.reponse == 'ok') {
+                                ctr = ctr-1;
+                                $('#ctr').val(ctr);
+                                if(ctr == 0){
+                                    $('#block_notification').hide();
+                                }
+                               $("#notification_"+idRequest).hide(500);
+                            }
+
+                        }
+                    });
+                });
+            });
+    </script>
