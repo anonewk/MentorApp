@@ -50,6 +50,10 @@ class UserController extends ApplicationUser
 
             //$entityManager = $this->getDoctrine()->getManager();
             $manager->persist($user);
+
+            $FrequencyPreferences = new FrequencyPreferences();
+            $FrequencyPreferences->setIsOnceAWeek(true)
+            ->
             $manager->flush();
 
             return $this->redirectToRoute('user_index');

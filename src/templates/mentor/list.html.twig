@@ -27,6 +27,7 @@
 
                 <div class="rounded-btn ">
                     {% for User in Users %}
+                      {% if (User != app.user) %}
                         {% set country = "" %}
                         {% if (User.country is defined) and (User.country !="" ) %}
                             {% set country = ' , '~ User.country %}
@@ -78,6 +79,7 @@
                             <a class="linkProfil pl-5" href="{{ path('mentor_mentore_profil', {'id' : User.id })}}">Voir profil</a>
 
                         </div>
+                      {% endif %}
                     {% endfor %}
 
                 </div>

@@ -3,15 +3,19 @@
 namespace App\Controller;
 
 use Exception;
+use App\Entity\Goal;
 use App\Entity\User;
 use App\Entity\Skill;
 use App\Entity\UserSkill;
+use App\Entity\MentoringContract;
+use App\Entity\FrequencyPreferences;
 use App\Entity\MentoringPreferences;
 use App\Entity\MentoringContractRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\FrequencyPreferencesRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -178,11 +182,13 @@ class MentorController extends AbstractController
     // TODO Changer la route si nécessaire, remplir la fonction, remplir le back sur la page twig
     public function contratObjectifs($id, EntityManagerInterface $manager)
     {
+        $requestContract=$manager->getRepository(MentoringContractRequest::class)->find($id);
+        $goals = $manager->getRepository(Goal::class)->findBy(['MentoringContract'=>1]);
         /*dd($user);*/
         $datetime = new \DateTime();
         $date = $datetime->format('Y-m-d');
 
-        return $this->render('mentor/relations/contrat/objectifs/objectifs.html.twig');
+        return $this->render('mentor/relations/contrat/objectifs/objectifs.html.twig', ['goals'=>$goals, 'RequestContract'=>$requestContract]);
     }
 
     /**
@@ -196,10 +202,57 @@ class MentorController extends AbstractController
         $MentoringContractRequest=$manager->getRepository(MentoringContractRequest::class)->find($requestId);
         $MentoringContractRequest->setStatus($option);
         $manager->persist($MentoringContractRequest);
+
+        if($option == 'approved'){
+            $mentoringContract = new MentoringContract();
+            $nameContract = 'Contrat de mentoring en '.$MentoringContractRequest->getSkillId()->getSkill()->getName();
+            $idPreference = $MentoringContractRequest->getUserRecipient()->getMentoringPreferences()->getId();
+            $preference = $manager->getRepository(FrequencyPreferences::class)->find($idPreference);
+            $mentoringContract -> setName($nameContract);
+            $mentoringContract -> setIsActive(true);
+            $mentoringContract -> setFrequencyPreferences($preference);
+            $manager->persist($mentoringContract);
+        }
+        
         $manager->flush();
         $data=['reponse'=>'ok'];
         return new JsonResponse($data);
     }
 
+    /**
+     * Route pour ajouter un objectif
+     *
+     * @Route("/mentor_mentore/objectif/add", name="objectif_add")
+     */
+    public function addObjectif(Request $request, EntityManagerInterface $manager){
 
+        $id=1;
+        $description=$request->request->get('goal');
+        $requestId=$request->request->get('idRequest');
+        $idcontract = $manager->getRepository(MentoringContract::class)->find($id);
+        $goal = new Goal();
+        $goal->setMentoringContract($idcontract)
+            ->setDescription($description)
+            ->setIsSuccessful(false);
+        $manager->persist($goal);
+        $manager->flush();
+        $data=['reponse'=>'ok'];
+        return new JsonResponse($data);
+    }
+
+  /**
+     * Route pour vcalider un objectif
+     *
+     * @Route("/mentor_mentore/objectif/valid", name="objectif_valid")
+     */
+    public function validObjectif(Request $request, EntityManagerInterface $manager){
+        $idgoal=$request->request->get('idgoal');
+        $goal = $manager->getRepository(Goal::class)->find($idgoal);
+     
+        $goal->setIsSuccessful(true);
+        $manager->persist($goal);
+        $manager->flush();
+        $data=['reponse'=>'ok'];
+        return new JsonResponse($data);
+    }
 }

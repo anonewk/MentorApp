@@ -31,7 +31,7 @@
                         {#A remplacer par les données stocké en bdd#}
 
                         <div class="grid grid-flow-col grid-rows-4">
-                            <span class="text-lg font-semibold">Mon contrat de mentorat avec Maya #57</span>
+                            <span class="text-lg font-semibold">Mon contrat de mentorat en <b>{{ RequestContract.skillId.Skill.name }}</b> avec <b>{{ RequestContract.UserSender.firstName }} {{ RequestContract.UserSender.lastName }}</b> #{{ RequestContract.id }}</span>
                             <span class="text-sm">en tant que mentor</span>
                         </div>
 
@@ -55,6 +55,7 @@
                                 <div class="pt-6">
                                     <div class="grid pl-5 ">
                                         {#A remplacer par les objectifs à faire stocké en bdd#}
+<<<<<<< HEAD
                                         <div class="rounded w-full py-2 px-3 text-default background-color">
                                             <span >Nullam luctus sapien sit amet pretium feugiat.</span>
                                         </div>
@@ -64,6 +65,15 @@
                                         <div>
                                             <span>Nullam luctus sapien sit amet pretium feugiat.</span>
                                         </div>
+=======
+                                        {% for goal in goals %}
+                                            {% if (goal.isSuccessful == true) %}
+                                                <div>
+                                                    <span>{{ goal.description }}</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+>>>>>>> 6f9c5b026cae78c8fcbe1035c327dfd19532f7b5
 
                                     </div>
                                 </div>
@@ -84,21 +94,13 @@
                                 <div class="pt-6">
                                     <div class="grid   pl-5  ">
                                         {#A remplacer par les objectifs à faire stocké en bdd#}
-                                        <div>
-                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
-                                        </div>
-                                        <div>
-                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
-                                        </div>
-                                        <div>
-                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
-                                        </div>
-                                        <div>
-                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
-                                        </div>
-                                        <div>
-                                            <span>Nullam luctus sapien sit amet pretium feugiat.</span>
-                                        </div>
+                                        {% for goal in goals %}
+                                            {% if (goal.isSuccessful == false) %}
+                                                <div>
+                                                    <span>{{ goal.description }}</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -168,11 +170,16 @@
                     </div>
 
                     <!--Body-->
-
+                            <form>
+                                <label for="description"></label>
+                                <textarea id="textareaAddGoal" placeholder="Description" style="background-color:#EEEEEE" name="description" id="description" cols="30" rows="3"></textarea>
+                                <input id="idRequest" value="{{ RequestContract.id }}" type="hidden">
+                                <input id="idMentoratContract" value="" type="hidden">
+                            </form>
                     <!--Footer-->
                     <div class="flex justify-end pt-2">
-                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Ajouter</button>
-                        <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
+                        <button id="saveGoal" class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Ajouter</button>
+                        <button  class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
                     </div>
 
                 </div>
@@ -246,10 +253,22 @@
                     </div>
 
                     <!--Body-->
+                        <form action="">
+                            <label style="font-weight:bold" for="objectif">Objectif à valider</label>
+                            <select style="background-color:#eeeeee" name="objectif_validation" id="objectif_validation">
+                                {% for goal in goals %}
+                                    {% if (goal.isSuccessful == false) %}
+                                        <option value="{{ goal.id }}">{{ goal.description }}</option>
+                                    {% endif %}
+                                    
+                                {% endfor %}
+                                <option value=""></option>
+                            </select>
+                        </form>
 
                     <!--Footer-->
                     <div class="flex justify-end pt-2">
-                        <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">valider</button>
+                        <button id="valide_objectif" class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">valider</button>
                         <button class="modal-close-valider px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Fermer</button>
                     </div>
 
@@ -413,5 +432,57 @@
       <script>
 
           feather.replace()
+      </script>
+
+      <script>
+          jQuery(document).ready(function(){
+              $('#saveGoal').click(function(){
+                  var goal = $("#textareaAddGoal").val();
+                  var idRequest =$("#idRequest").val();
+                 if(goal == ""){
+                     alert ('Le champ description de l\'objectif est obligatoire');
+                 }else{
+                    $.ajax({
+                        url: "{{ path('objectif_add') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "goal": goal,
+                            "idRequest" : idRequest,
+                        },
+                        async: true,
+                        success: function (data){ 
+                            $("#textareaAddGoal").val("");
+                            location.reload();
+
+                        }
+                    });
+                 }
+              });
+
+            
+            $("#valide_objectif").click(function(){
+                var idobjectif=$("#objectif_validation").val();
+                if(idobjectif !=""){
+                    $.ajax({
+                        url: "{{ path('objectif_valid') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            "idgoal": idobjectif ,
+                        },
+                        async: true,
+                        success: function (data){ 
+                            location.reload();
+
+                        }
+                    });
+                }
+            });
+
+            
+
+
+          });
       </script>
   {% endblock %}
