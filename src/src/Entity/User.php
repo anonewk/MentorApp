@@ -177,6 +177,11 @@ class User implements UserInterface
      */
     private $ProfilePicture;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=FrequencyPreferences::class, mappedBy="user")
+     */
+    private $frequencyPreferences;
+
 
 
 
@@ -190,6 +195,7 @@ class User implements UserInterface
         $this->notations = new ArrayCollection();
         $this->groupAssignments = new ArrayCollection();
         $this->groupInvitations = new ArrayCollection();
+        $this->frequencyPreferences = new ArrayCollection();
     }
 
    
@@ -782,5 +788,33 @@ class User implements UserInterface
 
 
 
+    }
+
+    /**
+     * @return Collection|FrequencyPreferences[]
+     */
+    public function getFrequencyPreferences(): Collection
+    {
+        return $this->frequencyPreferences;
+    }
+
+    public function addFrequencyPreference(FrequencyPreferences $frequencyPreference): self
+    {
+        if (!$this->frequencyPreferences->contains($frequencyPreference)) {
+            $this->frequencyPreferences[] = $frequencyPreference;
+            $frequencyPreference->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFrequencyPreference(FrequencyPreferences $frequencyPreference): self
+    {
+        if ($this->frequencyPreferences->contains($frequencyPreference)) {
+            $this->frequencyPreferences->removeElement($frequencyPreference);
+            $frequencyPreference->removeUser($this);
+        }
+
+        return $this;
     }
 }

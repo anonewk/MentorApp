@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FrequencyPreferencesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class FrequencyPreferences
      * @ORM\Column(type="boolean")
      */
     private $isOnceAMonth;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="frequencyPreferences")
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->user = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,32 @@ class FrequencyPreferences
     public function setIsOnceAMonth(bool $isOnceAMonth): self
     {
         $this->isOnceAMonth = $isOnceAMonth;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->user->contains($user)) {
+            $this->user->removeElement($user);
+        }
 
         return $this;
     }
